@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <title>Stackly Business Solution</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Full Page Loader Styles */
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff; /* white background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loader {
+      width: 60px;
+      aspect-ratio: 1;
+      color: #8e0a64; /* brand color */
+      position: relative;
+      background: radial-gradient(10px,currentColor 94%,#0000);
+    }
+
+    #loader:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(9px at bottom right,#0000 94%,currentColor) top    left,
+        radial-gradient(9px at bottom left ,#0000 94%,currentColor) top    right,
+        radial-gradient(9px at top    right,#0000 94%,currentColor) bottom left,
+        radial-gradient(9px at top    left ,#0000 94%,currentColor) bottom right;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      animation: l18 1.5s infinite cubic-bezier(0.3,1,0,1);
+    }
+
+    @keyframes l18 {
+       33%  {inset:-10px;transform: rotate(0deg)}
+       66%  {inset:-10px;transform: rotate(90deg)}
+       100% {inset:0    ;transform: rotate(90deg)}
+    }
+
+    /* Hide body scroll while loading */
+    body.loading {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="loading">
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+  </div>
+<div id="main-content" style="display:none;">
+  <!-- Header Top Bar -->
+  <div class="top-bar">
+    <div class="left">
+      <span>📞 12345678 </span>
+      <span>✉ support@yoursite.com</span>
+    </div>
+    <div class="right">
+  <a href="404.html" target="_blank" class="social"><i class="fab fa-facebook-f"></i></a>
+  <a href="404.html" target="_blank" class="social"><i class="fab fa-twitter"></i></a>
+  <a href="404.html" target="_blank" class="social"><i class="fab fa-instagram"></i></a>
+  <a href="404.html" target="_blank" class="social"><i class="fab fa-linkedin-in"></i></a>
+</div>
+  </div>
+
+  <!-- Navbar -->
+<header>
+  <div class="logo">
+    <img src="images/logo.png" alt="Logo">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li><a href="404.html">About Us</a></li>
+      <li><a href="404.html">Services</a></li>
+      <li><a href="404.html">Blog</a></li>
+      <li><a href="404.html">Contact Us</a></li>
+    </ul>
+  </nav>
+  <a href="404.html" class="button-92" role="button">Consultant Now</a>
+</header>
+
+<!-- Hero Section with Video Background -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="videos/business.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+
+  <!-- Bubble Background -->
+  <div class="bubble-container"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <div class="center">
+      <h1>
+        <span>B</span><span>u</span><span>s</span><span>i</span><span>n</span><span>e</span><span>s</span><span>s</span>
+        <span> </span>
+        <span>S</span><span>o</span><span>l</span><span>u</span><span>t</span><span>i</span><span>o</span><span>n</span><span>s</span>
+      </h1>
+    </div>
+    <p>
+      We deliver smart and customized business solutions to streamline operations,
+      enhance growth, and create long-term value for your company.
+    </p>
+    <a href="404.html" class="btn learn">Learn More</a>
+  </div>
+</section>
+<div class="cursor-dot"></div>
+<div class="cursor-circle"></div>
+<script>
+  const bubbleContainer = document.querySelector(".bubble-container");
+
+  for (let i = 0; i < 12; i++) {   // reduced bubble count
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+
+    // random size
+    const size = Math.random() * 50 + 20; // 20px – 70px
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+
+    // random horizontal position
+    bubble.style.left = `${Math.random() * 100}%`;
+
+    // random speed
+    bubble.style.animationDuration = `${Math.random() * 10 + 8}s`;
+
+    // random delay
+    bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+    bubbleContainer.appendChild(bubble);
+  }
+</script>
+
+
+<script>
+    window.addEventListener("load", function() {
+      // Minimum loader duration in milliseconds
+      const minDuration = 3000; 
+      const loaderWrapper = document.getElementById("loader-wrapper");
+      const mainContent = document.getElementById("main-content");
+
+      // Wait minDuration before hiding loader
+      setTimeout(() => {
+        loaderWrapper.style.display = "none";
+        mainContent.style.display = "block";
+        document.body.classList.remove("loading");
+      }, minDuration);
+    });
+  </script>
+
+
+<script>
+/* JS: add a small stagger (and start animations reliably) */
+document.addEventListener('DOMContentLoaded', function () {
+  const letters = document.querySelectorAll('.center h1 span');
+  const stagger = 0.03; // seconds between letters — tweak to taste
+
+  letters.forEach((span, i) => {
+    span.style.animationDelay = (i * stagger) + 's';
+    // start the animation (it was paused initially)
+    span.style.animationPlayState = 'running';
+  });
+});
+</script>
+
+<script>
+  const cursorDot = document.querySelector(".cursor-dot");
+  const cursorCircle = document.querySelector(".cursor-circle");
+
+  document.addEventListener("mousemove", (e) => {
+    const { clientX: x, clientY: y } = e;
+    cursorDot.style.left = `${x}px`;
+    cursorDot.style.top = `${y}px`;
+    cursorCircle.style.left = `${x}px`;
+    cursorCircle.style.top = `${y}px`;
+  });
+
+  // Optional: small "click pulse"
+  document.addEventListener("click", () => {
+    cursorCircle.style.transform = "translate(-50%, -50%) scale(0.8)";
+    setTimeout(() => {
+      cursorCircle.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 150);
+  });
+</script>
+
+
+</body>
+</html>

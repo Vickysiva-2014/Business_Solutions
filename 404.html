@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 10rem;
+      color: #8e0a64;
+      margin-bottom: 20px;
+      position: relative;
+      animation: bounce 2s infinite;
+    }
+
+    .container h1::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: rgba(142, 10, 100, 0.2);
+      left: 0;
+      bottom: -10px;
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+
+    .container h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #8e0a64;
+    }
+
+    .container p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .btn-home {
+      text-decoration: none;
+      color: #fff;
+      background-color: #8e0a64;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .btn-home:hover {
+      background-color: #6a0dad;
+      transform: scale(1.05);
+    }
+
+    /* Bounce animation */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @media (max-width: 768px) {
+      .container h1 {
+        font-size: 6rem;
+      }
+      .container h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>Oops! The page you are looking for does not exist or has been moved.</p>
+    <a href="index.html" class="btn-home">Go Back Home</a>
+  </div>
+</body>
+</html>
