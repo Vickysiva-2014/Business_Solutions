@@ -8,59 +8,89 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* Full Page Loader Styles */
-    #loader-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #ffffff; /* white background */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+    /* Loader Wrapper */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
 
-    #loader {
-      width: 60px;
-      aspect-ratio: 1;
-      color: #8e0a64; /* brand color */
-      position: relative;
-      background: radial-gradient(10px,currentColor 94%,#0000);
-    }
+/* Loader itself */
+#loader {
+  width: 60px;
+  aspect-ratio: 1;
+  color: #8e0a64;
+  position: relative;
+  background: radial-gradient(10px,currentColor 94%,#0000);
+}
+#loader:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(9px at bottom right,#0000 94%,currentColor) top left,
+    radial-gradient(9px at bottom left ,#0000 94%,currentColor) top right,
+    radial-gradient(9px at top    right,#0000 94%,currentColor) bottom left,
+    radial-gradient(9px at top    left ,#0000 94%,currentColor) bottom right;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  animation: l18 1.5s infinite cubic-bezier(0.3,1,0,1);
+}
+@keyframes l18 {
+   33%  {inset:-10px;transform: rotate(0deg)}
+   66%  {inset:-10px;transform: rotate(90deg)}
+   100% {inset:0    ;transform: rotate(90deg)}
+}
 
-    #loader:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background:
-        radial-gradient(9px at bottom right,#0000 94%,currentColor) top    left,
-        radial-gradient(9px at bottom left ,#0000 94%,currentColor) top    right,
-        radial-gradient(9px at top    right,#0000 94%,currentColor) bottom left,
-        radial-gradient(9px at top    left ,#0000 94%,currentColor) bottom right;
-      background-size: 20px 20px;
-      background-repeat: no-repeat;
-      animation: l18 1.5s infinite cubic-bezier(0.3,1,0,1);
-    }
+/* Hide body scroll while loading */
+body.loading {
+  overflow: hidden;
+}
 
-    @keyframes l18 {
-       33%  {inset:-10px;transform: rotate(0deg)}
-       66%  {inset:-10px;transform: rotate(90deg)}
-       100% {inset:0    ;transform: rotate(90deg)}
-    }
+/* Reveal Panels */
+.reveal {
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  background: #ffffff;
+  z-index: 9998;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
 
-    /* Hide body scroll while loading */
-    body.loading {
-      overflow: hidden;
-    }
+.reveal.tl { top: 0; left: 0; transform-origin: top left; }
+.reveal.tr { top: 0; right: 0; transform-origin: top right; }
+.reveal.bl { bottom: 0; left: 0; transform-origin: bottom left; }
+.reveal.br { bottom: 0; right: 0; transform-origin: bottom right; }
+
+/* Hidden State after split */
+.reveal.hide {
+  transform: scale(0);
+  opacity: 0;
+}
+
+
+
   </style>
 </head>
 <body class="loading">
   <div id="loader-wrapper">
     <div id="loader"></div>
   </div>
+
+  <div class="reveal tl"></div>
+<div class="reveal tr"></div>
+<div class="reveal bl"></div>
+<div class="reveal br"></div>
+
 <div id="main-content" style="display:none;">
   <!-- Header Top Bar -->
   <div class="top-bar">
@@ -86,6 +116,7 @@
       <li><a href="index.html">Homepage</a></li>
       <li><a href="404.html">About Us</a></li>
       <li><a href="404.html">Services</a></li>
+      <li><a href="404.html">FAQ</a></li>
       <li><a href="404.html">Blog</a></li>
       <li><a href="404.html">Contact Us</a></li>
     </ul>
@@ -119,86 +150,279 @@
     <a href="404.html" class="btn learn">Learn More</a>
   </div>
 </section>
+<section class="about-section">
+  <div class="about-container">
+    <!-- Left Side: Overlapping Images -->
+    <div class="about-left">
+      <div class="about-images">
+  <img src="images/about1.jpg" alt="Background image" class="img-back" />
+
+  <!-- front image + SVG border overlay (wrap so svg matches image size) -->
+  <div class="img-front-wrap">
+    <img src="images/about2.jpg" alt="Front image" class="img-front" />
+    <!-- SVG overlay: stroke will animate -->
+    <svg class="img-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <rect x="2" y="2" width="96" height="96" rx="6" ry="6" />
+    </svg>
+  </div>
+</div>
+      <h3 class="company-name">Stackly Corp</h3>
+    </div>
+
+    <!-- Right Side: Text Content -->
+    <div class="about-right">
+      <h4 class="about-subtitle">About Company</h4>
+      <h2 class="about-title">Welcome to Business Solutions</h2>
+      <p>
+        We provide innovative and customized business solutions designed to help
+        organizations improve efficiency, boost growth, and achieve long-term
+        success. Our team of experts specializes in financial management,
+        operations strategy, and digital transformation to ensure your company
+        stays competitive in today’s fast-changing market.
+      </p>
+      <p>
+        With Business Solutions, you gain a trusted partner dedicated to aligning
+        your business goals with effective strategies that drive measurable
+        results and sustainable success.
+      </p>
+      <a href="contact.html" class="btn-start">➝ Get Started</a>
+    </div>
+  </div>
+</section>
+
+<section class="counter-section">
+  <div class="counter-box">
+    <i class="fas fa-briefcase"></i>
+    <h2 class="counter" data-target="12280">0</h2>
+    <p>Project Complete</p>
+  </div>
+  <div class="counter-box">
+    <i class="fas fa-users"></i>
+    <h2 class="counter" data-target="1825">0</h2>
+    <p>Our Employee</p>
+  </div>
+  <div class="counter-box">
+    <i class="fas fa-award"></i>
+    <h2 class="counter" data-target="135">0</h2>
+    <p>Awards</p>
+  </div>
+  <div class="counter-box">
+    <i class="fas fa-hand-holding-heart"></i>
+    <h2 class="counter" data-target="256681">0</h2>
+    <p>Our Volunteer</p>
+  </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="services.css">
+</head>
+<body>
+  <section class="services">
+    <h4>— Our Services —</h4>
+    <h2>Want to grow your business? <br>We have the solution</h2>
+    <p>Explore our range of services designed to help you reach your goals and achieve success.</p>
+
+    <div class="grid">
+      <div class="card style1">
+        <h3>Marketing</h3>
+        <p>We help you reach the right audience and increase your brand awareness.</p>
+      </div>
+      <div class="card style2">
+        <h3>Financial</h3>
+        <p>Professional financial planning and advice to secure your future growth.</p>
+      </div>
+      <div class="card style1">
+        <h3>Innovation</h3>
+        <p>Creative solutions and strategies to keep your business ahead of the curve.</p>
+      </div>
+      <div class="card style2">
+        <h3>Consultation</h3>
+        <p>Expert consultation to guide your decisions and business strategies.</p>
+      </div>
+      <div class="card style1">
+        <h3>Promotion</h3>
+        <p>Engaging campaigns that promote your products and services effectively.</p>
+      </div>
+      <div class="card style2">
+        <h3>Production</h3>
+        <p>Efficient production processes to maximize quality and minimize cost.</p>
+      </div>
+    </div>
+  </section>
+<hr class="custom-hr">
+  <section class="scroll-gallery">
+  <div class="scroll-wrapper">
+    <div class="scroll-track">
+      <!-- Repeat the 5 images twice for seamless loop -->
+      <img src="images/img1.jpg" alt="Gallery 1">
+      <img src="images/img2.jpg" alt="Gallery 2">
+      <img src="images/img3.jpg" alt="Gallery 3">
+      <img src="images/img4.jpg" alt="Gallery 4">
+      <img src="images/img5.jpg" alt="Gallery 5">
+
+      <img src="images/img1.jpg" alt="Gallery 1">
+      <img src="images/img2.jpg" alt="Gallery 2">
+      <img src="images/img3.jpg" alt="Gallery 3">
+      <img src="images/img4.jpg" alt="Gallery 4">
+      <img src="images/img5.jpg" alt="Gallery 5">
+    </div>
+  </div>
+</section>
+<hr class="custom-hr">
+<!-- Font Awesome -->
+<section class="process-section">
+  <h4>— Our Process —</h4>
+
+  <div class="process-container">
+
+    <!-- Row 1 -->
+    <div class="process-row">
+      <div class="line"></div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-lightbulb"></i>
+          <span>01</span>
+        </div>
+        <div class="content">
+          <h3>Business Solution</h3>
+          <p>We analyze your business requirements and identify the best solutions.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-chart-line"></i>
+          <span>02</span>
+        </div>
+        <div class="content">
+          <h3>Planning</h3>
+          <p>We create a detailed roadmap to ensure smooth and effective implementation.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-pencil-ruler"></i>
+          <span>03</span>
+        </div>
+        <div class="content">
+          <h3>Design</h3>
+          <p>We design modern, user-friendly solutions aligned with your goals.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="process-row">
+      <div class="line"></div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-code"></i>
+          <span>04</span>
+        </div>
+        <div class="content">
+          <h3>Development</h3>
+          <p>We develop secure and scalable solutions using the latest technologies.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-vial"></i>
+          <span>05</span>
+        </div>
+        <div class="content">
+          <h3>Testing</h3>
+          <p>We ensure quality with rigorous testing and validation at every stage.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">
+          <i class="fas fa-rocket"></i>
+          <span>06</span>
+        </div>
+        <div class="content">
+          <h3>Launch & Support</h3>
+          <p>We launch your solution and provide ongoing support for growth.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- <section class="projects-section">
+    <div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+    <h4>— Our Latest Project —</h4>
+    <div class="hex-grid">
+
+      <div class="project-card">
+        <div class="hex"><img src="images/cloud.jpg" alt="Project 1"></div>
+        <h3>Cloud Integration</h3>
+        <p>Seamless migration and integration of enterprise systems into secure cloud platforms.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="hex"><img src="images/ai.jpg" alt="Project 2"></div>
+        <h3>AI Automation</h3>
+        <p>Boosting efficiency with custom AI-driven workflows and intelligent automation tools.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="hex"><img src="images/cyber.jpg" alt="Project 3"></div>
+        <h3>Cybersecurity Upgrade</h3>
+        <p>Advanced security frameworks to safeguard business data against evolving threats.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="hex"><img src="images/erp.jpg" alt="Project 4"></div>
+        <h3>ERP Solutions</h3>
+        <p>Tailored ERP implementations to streamline business operations and resource planning.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="hex"><img src="images/data.jpg" alt="Project 5"></div>
+        <h3>Data Analytics</h3>
+        <p>Transforming raw data into actionable insights for smarter decision-making.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="hex"><img src="images/mobile.jpg" alt="Project 6"></div>
+        <h3>Mobile Solutions</h3>
+        <p>Developing scalable mobile apps to enhance customer engagement and service delivery.</p>
+      </div>
+
+    </div>
+  </section> -->
+
+
+</body>
+</html>
+
+
 <div class="cursor-dot"></div>
 <div class="cursor-circle"></div>
-<script>
-  const bubbleContainer = document.querySelector(".bubble-container");
 
-  for (let i = 0; i < 12; i++) {   // reduced bubble count
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-
-    // random size
-    const size = Math.random() * 50 + 20; // 20px – 70px
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-
-    // random horizontal position
-    bubble.style.left = `${Math.random() * 100}%`;
-
-    // random speed
-    bubble.style.animationDuration = `${Math.random() * 10 + 8}s`;
-
-    // random delay
-    bubble.style.animationDelay = `${Math.random() * 5}s`;
-
-    bubbleContainer.appendChild(bubble);
-  }
-</script>
-
-
-<script>
-    window.addEventListener("load", function() {
-      // Minimum loader duration in milliseconds
-      const minDuration = 3000; 
-      const loaderWrapper = document.getElementById("loader-wrapper");
-      const mainContent = document.getElementById("main-content");
-
-      // Wait minDuration before hiding loader
-      setTimeout(() => {
-        loaderWrapper.style.display = "none";
-        mainContent.style.display = "block";
-        document.body.classList.remove("loading");
-      }, minDuration);
-    });
-  </script>
-
-
-<script>
-/* JS: add a small stagger (and start animations reliably) */
-document.addEventListener('DOMContentLoaded', function () {
-  const letters = document.querySelectorAll('.center h1 span');
-  const stagger = 0.03; // seconds between letters — tweak to taste
-
-  letters.forEach((span, i) => {
-    span.style.animationDelay = (i * stagger) + 's';
-    // start the animation (it was paused initially)
-    span.style.animationPlayState = 'running';
-  });
-});
-</script>
-
-<script>
-  const cursorDot = document.querySelector(".cursor-dot");
-  const cursorCircle = document.querySelector(".cursor-circle");
-
-  document.addEventListener("mousemove", (e) => {
-    const { clientX: x, clientY: y } = e;
-    cursorDot.style.left = `${x}px`;
-    cursorDot.style.top = `${y}px`;
-    cursorCircle.style.left = `${x}px`;
-    cursorCircle.style.top = `${y}px`;
-  });
-
-  // Optional: small "click pulse"
-  document.addEventListener("click", () => {
-    cursorCircle.style.transform = "translate(-50%, -50%) scale(0.8)";
-    setTimeout(() => {
-      cursorCircle.style.transform = "translate(-50%, -50%) scale(1)";
-    }, 150);
-  });
-</script>
-
-
+<script src="script.js"></script>
 </body>
 </html>
