@@ -1,64 +1,24 @@
 
-  const bubbleContainer = document.querySelector(".bubble-container");
-
-  for (let i = 0; i < 12; i++) {   // reduced bubble count
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-
-    // random size
-    const size = Math.random() * 50 + 20; // 20px – 70px
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-
-    // random horizontal position
-    bubble.style.left = `${Math.random() * 100}%`;
-
-    // random speed
-    bubble.style.animationDuration = `${Math.random() * 10 + 8}s`;
-
-    // random delay
-    bubble.style.animationDelay = `${Math.random() * 5}s`;
-
-    bubbleContainer.appendChild(bubble);
-  }
 
 
-window.addEventListener("load", function() {
-  const loaderWrapper = document.getElementById("loader-wrapper");
-  const mainContent = document.getElementById("main-content");
-  const panels = document.querySelectorAll(".reveal");
-
-  // Loader duration
-  const loaderDuration = 3000; 
-  // Delay after loader ends before split animation
-  const splitDelay = 200;      
-
-  // Step 1: run loader for X sec
-  setTimeout(() => {
-    loaderWrapper.style.display = "none";
-
-    // Step 2: show content immediately behind panels
-    mainContent.style.display = "block";
-    document.body.classList.remove("loading");
-
-    // Step 3: after small delay, trigger split animation
+  window.addEventListener("load", () => {
+    // Small delay for animation effect
     setTimeout(() => {
-      panels.forEach((panel, i) => {
-        setTimeout(() => {
-          panel.classList.add("hide");
-        }, i * 150); // stagger effect
+      // Hide loader
+      document.getElementById("loader-wrapper").style.display = "none";
+
+      // Animate reveal panels
+      document.querySelectorAll(".reveal").forEach(panel => {
+        panel.classList.add("hide");
       });
 
-      // Step 4: remove panels from DOM after animation
-      setTimeout(() => {
-        panels.forEach(p => p.remove());
-      }, 1500);
+      // Show main content
+      document.getElementById("main-content").style.display = "block";
 
-    }, splitDelay);
-
-  }, loaderDuration);
-});
-
+      // Remove loading class from body
+      document.body.classList.remove("loading");
+    }, 800); // adjust delay as you like
+  });
 
 
 /* JS: add a small stagger (and start animations reliably) */
@@ -141,4 +101,62 @@ setInterval(() => {
   });
 }, 3000);
 
+
+(function(){
+  const wrap = document.querySelector('.testi-wrap');
+  const items = Array.from(wrap.querySelectorAll('.client-single'));
+  let lastIndex = items.findIndex(el=>el.classList.contains('active'));
+  if(lastIndex < 0) lastIndex = 0;
+  let rotateInterval = 6000;
+  let timer = null;
+
+  function pickRandomDifferent(){
+    let idx = Math.floor(Math.random()*items.length);
+    while(idx===lastIndex && items.length>1){idx = Math.floor(Math.random()*items.length)}
+    return idx;
+  }
+  function activateIndex(newIndex){
+    if(newIndex === lastIndex) return;
+    const prev = items[lastIndex];
+    const next = items[newIndex];
+    const prevPos = prev.getAttribute('data-position');
+    const nextPos = next.getAttribute('data-position');
+    prev.classList.remove('active'); prev.classList.add('inactive');
+    prev.classList.remove(prevPos); prev.classList.add(nextPos); prev.setAttribute('data-position', nextPos);
+    next.classList.remove('inactive'); next.classList.add('active');
+    next.classList.remove(nextPos); next.classList.add(prevPos); next.setAttribute('data-position', prevPos);
+    lastIndex = newIndex;
+  }
+  function startTimer(){
+    stopTimer();
+    timer = setInterval(()=>{
+      const idx = pickRandomDifferent();
+      activateIndex(idx);
+    }, rotateInterval);
+  }
+  function stopTimer(){ if(timer) clearInterval(timer); }
+
+  startTimer();
+
+  items.forEach((el, idx)=>{
+    el.addEventListener('click', e=>{e.preventDefault();activateIndex(idx);startTimer();});
+    el.setAttribute('tabindex','0');
+    el.addEventListener('keydown', ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();activateIndex(idx);startTimer();}});
+  });
+})();
+
+
+var swiper = new Swiper('.blog-slider', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      mousewheel: {
+        invert: false,
+      },
+      // autoHeight: true,
+      pagination: {
+        el: '.blog-slider__pagination',
+        clickable: true,
+      }
+    });
 

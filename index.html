@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
   <title>Stackly Business Solution</title>
   <link rel="stylesheet" href="styles.css">
-
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     /* Loader Wrapper */
 #loader-wrapper {
@@ -124,25 +125,15 @@ body.loading {
   <a href="404.html" class="button-92" role="button">Consultant Now</a>
 </header>
 
-<!-- Hero Section with Video Background -->
 <section class="hero">
+  <!-- Background Video -->
   <video autoplay muted loop playsinline class="bg-video">
-    <source src="videos/business.mp4" type="video/mp4">
+    <source src="videos/Background.mp4" type="video/mp4">
   </video>
-  <div class="overlay"></div>
-
-  <!-- Bubble Background -->
-  <div class="bubble-container"></div>
-
+<div class="bg-video-overlay"></div>
   <!-- Hero Content -->
   <div class="hero-content">
-    <div class="center">
-      <h1>
-        <span>B</span><span>u</span><span>s</span><span>i</span><span>n</span><span>e</span><span>s</span><span>s</span>
-        <span> </span>
-        <span>S</span><span>o</span><span>l</span><span>u</span><span>t</span><span>i</span><span>o</span><span>n</span><span>s</span>
-      </h1>
-    </div>
+    <h1 class="masked-text">Business Solutions</h1>
     <p>
       We deliver smart and customized business solutions to streamline operations,
       enhance growth, and create long-term value for your company.
@@ -150,6 +141,7 @@ body.loading {
     <a href="404.html" class="btn learn">Learn More</a>
   </div>
 </section>
+
 <section class="about-section">
   <div class="about-container">
     <!-- Left Side: Overlapping Images -->
@@ -360,7 +352,7 @@ body.loading {
   </div>
 </section>
 
-<!-- <section class="projects-section">
+<section class="projects-section">
     <div class="stars">
     <div class="star"></div>
     <div class="star"></div>
@@ -413,15 +405,243 @@ body.loading {
       </div>
 
     </div>
-  </section> -->
+  </section>
+
+  <section id="testimonial-area">
+  <div class="container">
+    <div class="section-heading text-center">
+      <h4>— Testimonials —</h4>
+      <h2>A Word From Our Customers</h2>
+      <p>Real feedback from real customers.</p>
+    </div>
+
+    <div class="testi-wrap" aria-live="polite">
+
+      <div class="client-single active position-1" data-position="position-1">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=5" alt="Customer Sarah"></div>
+        <div class="client-comment">
+          <h3>"The team was extremely professional and delivered everything on time. I was impressed with the quality and dedication."</h3>
+          <span><i class="fa fa-quote-left"></i></span>
+        </div>
+        <div class="client-info"><h3>Customer</h3><p>Sarah J.</p></div>
+      </div>
+
+      <div class="client-single inactive position-2" data-position="position-2">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=12" alt="Customer Mark"></div>
+        <div class="client-comment"><h3>"Great support and fast responses — their suggestions boosted our conversion rate within weeks."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>Mark R.</p></div>
+      </div>
+
+      <div class="client-single inactive position-3" data-position="position-3">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=7" alt="Customer Priya"></div>
+        <div class="client-comment"><h3>"Excellent design sense and attention to detail — our site now looks professional and modern."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>Priya K.</p></div>
+      </div>
+
+      <div class="client-single inactive position-4" data-position="position-4">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=20" alt="Customer John"></div>
+        <div class="client-comment"><h3>"They took our brief and turned it into a product our users love. Communication was top notch."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>John P.</p></div>
+      </div>
+
+      <div class="client-single inactive position-5" data-position="position-5">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=18" alt="Customer Aisha"></div>
+        <div class="client-comment"><h3>"Working with them was effortless. They guided us through the process and delivered on time."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>Aisha S.</p></div>
+      </div>
+
+      <div class="client-single inactive position-6" data-position="position-6">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=32" alt="Customer Kevin"></div>
+        <div class="client-comment"><h3>"High quality work and good value for money. We've already recommended them to partners."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>Kevin L.</p></div>
+      </div>
+
+      <div class="client-single inactive position-7" data-position="position-7">
+        <div class="client-img"><img src="https://i.pravatar.cc/300?img=45" alt="Customer Jen"></div>
+        <div class="client-comment"><h3>"Simple process, clear milestones — the result exceeded our expectations."</h3><span><i class="fa fa-quote-left"></i></span></div>
+        <div class="client-info"><h3>Customer</h3><p>Jen M.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="logo-slider">
+    <div class="logo-slider-track">
+      <!-- Add company logos here -->
+      <img src="images/Client1.png" alt="Logo 1">
+      <img src="images/Client2.png"alt="Logo 2">
+      <img src="images/Client3.png" alt="Logo 3">
+      <img src="images/Client4.png" alt="Logo 4">
+      <img src="images/Client5.png" alt="Logo 5">
+
+      <!-- Duplicate logos for smooth infinite scroll -->
+      <img src="images/Client1.png" alt="Logo 1">
+      <img src="images/Client2.png"alt="Logo 2">
+      <img src="images/Client3.png" alt="Logo 3">
+      <img src="images/Client4.png" alt="Logo 4">
+      <img src="images/Client5.png" alt="Logo 5">
+    </div>
+  </section>
+
+  <!-- <section class="blog-section">
+  <div class="blog-header">
+    <h4>— Our Blogs —</h4>
+    <p>Explore the latest insights, tips, and business solutions that help you grow smarter and faster.</p>
+  </div>
+  <div class="blog-slider">
+  <div class="blog-slider__wrp swiper-wrapper">
+    <div class="blog-slider__item swiper-slide">
+  <div class="blog-slider__img">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Business strategy meeting">
+  </div>
+      <div class="blog-slider__content">
+    <span class="blog-slider__code">15 September 2025</span>
+    <div class="blog-slider__title">5 Strategies to Scale Your Business</div>
+    <div class="blog-slider__text">
+      Discover proven methods for business growth—covering automation, digital marketing, and team efficiency to help you scale faster.
+    </div>
+        <a href="#" class="blog-slider__button">READ MORE</a>
+      </div>
+    </div>
+    <div class="blog-slider__item swiper-slide">
+  <div class="blog-slider__img">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800" alt="Digital marketing analytics">
+  </div>
+  <div class="blog-slider__content">
+    <span class="blog-slider__code">05 September 2025</span>
+    <div class="blog-slider__title">The Role of AI in Business Solutions</div>
+    <div class="blog-slider__text">
+      Learn how artificial intelligence is transforming operations, from customer support chatbots to predictive data analysis.
+    </div>
+        <a href="#" class="blog-slider__button">READ MORE</a>
+      </div>
+    </div>
+    
+    <div class="blog-slider__item swiper-slide">
+  <div class="blog-slider__img">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900" alt="Remote team collaboration">
+  </div>
+  <div class="blog-slider__content">
+    <span class="blog-slider__code">20 August 2025</span>
+    <div class="blog-slider__title">Boosting Productivity with Cloud Solutions</div>
+    <div class="blog-slider__text">
+      Explore how cloud tools streamline collaboration, improve data security, and reduce costs for modern businesses.
+    </div>
+     <a href="#" class="blog-slider__button">READ MORE</a>
+      </div>
+    </div>
+    
+  </div>
+  <div class="blog-slider__empty">
+  <video autoplay muted loop playsinline>
+    <source src="videos/b.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+</div>
+</div>
+  </section>
+
+  <section class="challenge-section">
+  <div class="challenge-content">
+    <h2>We’re always ready for a challenge</h2>
+    <p>
+      Our team thrives on solving complex business problems with innovative
+      solutions. Whether it’s improving efficiency, driving digital
+      transformation, or accelerating growth, we’re here to help your company
+      stay ahead in a competitive market.
+    </p>
+    <a href="#contact" class="btn">➝ Get Started</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-about">
+      <div class="footer-logo">
+        <img src="images/logo.png" alt="Stackly Logo">
+      </div>
+      <p>
+        Stackly delivers tailored digital and business solutions that help companies 
+        streamline processes, enhance productivity, and achieve long-term growth.
+      </p>
+      <a href="#" class="footer-btn">➝ Read More</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">➝ About Us</a></li>
+        <li><a href="#">➝ Services</a></li>
+        <li><a href="#">➝ FAQs</a></li>
+        <li><a href="#">➝ Our Team</a></li>
+        <li><a href="#">➝ Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Where We Work</h4>
+      <p><i class="fas fa-map-marker-alt"></i> city, state, country</p>
+      <p><i class="fas fa-phone"></i> +1234567890</p>
+      <p><i class="fas fa-envelope"></i> support@stackly.com</p>
+      <p><i class="fas fa-clock"></i> Mon - Sun: 08:00 - 17:00</p>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p>
+        Stay connected with Stackly for the latest insights, updates, 
+        and tips to grow your business smarter.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+    </div>
+
+  </div>
+ <div class="footer-dots">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Copyright © 2023. Stackly Business Solution. All Rights Reserved.</p>
+  </div>
+</footer> -->
 
 
-</body>
-</html>
 
 
 <div class="cursor-dot"></div>
 <div class="cursor-circle"></div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper('.blog-slider', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.blog-slider__pagination',
+        clickable: true,
+      }
+    });
+  </script>
 
 <script src="script.js"></script>
 </body>
