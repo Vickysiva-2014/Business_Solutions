@@ -1,24 +1,24 @@
 
 
 
-  window.addEventListener("load", () => {
-    // Small delay for animation effect
-    setTimeout(() => {
-      // Hide loader
-      document.getElementById("loader-wrapper").style.display = "none";
+  // window.addEventListener("load", () => {
+  //   // Small delay for animation effect
+  //   setTimeout(() => {
+  //     // Hide loader
+  //     document.getElementById("loader-wrapper").style.display = "none";
 
-      // Animate reveal panels
-      document.querySelectorAll(".reveal").forEach(panel => {
-        panel.classList.add("hide");
-      });
+  //     // Animate reveal panels
+  //     document.querySelectorAll(".reveal").forEach(panel => {
+  //       panel.classList.add("hide");
+  //     });
 
-      // Show main content
-      document.getElementById("main-content").style.display = "block";
+  //     // Show main content
+  //     document.getElementById("main-content").style.display = "block";
 
-      // Remove loading class from body
-      document.body.classList.remove("loading");
-    }, 800); // adjust delay as you like
-  });
+  //     // Remove loading class from body
+  //     document.body.classList.remove("loading");
+  //   }, 800); // adjust delay as you like
+  // });
 
 
 /* JS: add a small stagger (and start animations reliably) */

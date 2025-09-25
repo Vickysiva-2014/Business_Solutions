@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
   <title>Stackly Business Solution</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
     /* Loader Wrapper */
 #loader-wrapper {
@@ -77,9 +78,6 @@ body.loading {
   transform: scale(0);
   opacity: 0;
 }
-
-
-
   </style>
 </head>
 <body class="loading">
@@ -133,54 +131,61 @@ body.loading {
 <div class="bg-video-overlay"></div>
   <!-- Hero Content -->
   <div class="hero-content">
-    <h1 class="masked-text">Business Solutions</h1>
-    <p>
+    <h1 class="masked-text" data-aos="flip-up" data-aos-delay="200">Business Solutions</h1>
+    <p data-aos="flip-up" data-aos-delay="300">
       We deliver smart and customized business solutions to streamline operations,
       enhance growth, and create long-term value for your company.
     </p>
-    <a href="404.html" class="btn learn">Learn More</a>
+    <a href="404.html" class="btn learn" data-aos="flip-up" data-aos-delay="400">Learn More</a>
   </div>
 </section>
 
 <section class="about-section">
+  <!-- Background Video -->
+  <video class="bg-video1" autoplay muted loop playsinline>
+    <source src="videos/about.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
   <div class="about-container">
     <!-- Left Side: Overlapping Images -->
-    <div class="about-left">
+    <div class="about-left" data-aos="flip-up" data-aos-delay="200">
       <div class="about-images">
-  <img src="images/about1.jpg" alt="Background image" class="img-back" />
+        <img src="images/about1.jpg" alt="Background image" class="img-back" />
 
-  <!-- front image + SVG border overlay (wrap so svg matches image size) -->
-  <div class="img-front-wrap">
-    <img src="images/about2.jpg" alt="Front image" class="img-front" />
-    <!-- SVG overlay: stroke will animate -->
-    <svg class="img-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="2" y="2" width="96" height="96" rx="6" ry="6" />
-    </svg>
-  </div>
-</div>
+        <!-- front image + SVG border overlay (wrap so svg matches image size) -->
+        <div class="img-front-wrap" data-aos="flip-up" data-aos-delay="300">
+          <img src="images/about2.jpg" alt="Front image" class="img-front" />
+          <!-- SVG overlay -->
+          <svg class="img-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="2" y="2" width="96" height="96" rx="6" ry="6" />
+          </svg>
+        </div>
+      </div>
       <h3 class="company-name">Stackly Corp</h3>
     </div>
 
     <!-- Right Side: Text Content -->
     <div class="about-right">
-      <h4 class="about-subtitle">About Company</h4>
-      <h2 class="about-title">Welcome to Business Solutions</h2>
-      <p>
+      <h4 class="about-subtitle" data-aos="fade-up" data-aos-delay="200">About Company</h4>
+      <h2 class="about-title" data-aos="fade-up" data-aos-delay="300">Welcome to Business Solutions</h2>
+      <p data-aos="fade-up" data-aos-delay="400">
         We provide innovative and customized business solutions designed to help
         organizations improve efficiency, boost growth, and achieve long-term
         success. Our team of experts specializes in financial management,
         operations strategy, and digital transformation to ensure your company
         stays competitive in today’s fast-changing market.
       </p>
-      <p>
+      <p data-aos="fade-up" data-aos-delay="500">
         With Business Solutions, you gain a trusted partner dedicated to aligning
         your business goals with effective strategies that drive measurable
         results and sustainable success.
       </p>
-      <a href="contact.html" class="btn-start">➝ Get Started</a>
+      <a href="contact.html" class="btn-start" data-aos="fade-up" data-aos-delay="600">➝ Get Started</a>
     </div>
   </div>
 </section>
+
 
 <section class="counter-section">
   <div class="counter-box">
@@ -205,20 +210,21 @@ body.loading {
   </div>
 </section>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="services.css">
-</head>
-<body>
-  <section class="services">
-    <h4>— Our Services —</h4>
-    <h2>Want to grow your business? <br>We have the solution</h2>
-    <p>Explore our range of services designed to help you reach your goals and achieve success.</p>
+<section class="services">
+  <!-- Background video -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="videos/about.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="services-content">
+    <h4 data-aos="fade-up" data-aos-delay="200">— Our Services —</h4>
+    <h2 data-aos="fade-up" data-aos-delay="300">
+      Want to grow your business? <br>We have the solution
+    </h2>
+    <p data-aos="fade-up" data-aos-delay="400">
+      Explore our range of services designed to help you reach your goals and achieve success.
+    </p>
 
     <div class="grid">
       <div class="card style1">
@@ -246,7 +252,9 @@ body.loading {
         <p>Efficient production processes to maximize quality and minimize cost.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 <hr class="custom-hr">
   <section class="scroll-gallery">
   <div class="scroll-wrapper">
@@ -353,115 +361,161 @@ body.loading {
 </section>
 
 <section class="projects-section">
-    <div class="stars">
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-  </div>
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline preload="auto" class="bg-video">
+  <source src="videos/about.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+  <div class="projects-content">
     <h4>— Our Latest Project —</h4>
-    <div class="hex-grid">
 
-      <div class="project-card">
-        <div class="hex"><img src="images/cloud.jpg" alt="Project 1"></div>
-        <h3>Cloud Integration</h3>
-        <p>Seamless migration and integration of enterprise systems into secure cloud platforms.</p>
-      </div>
-
-      <div class="project-card">
-        <div class="hex"><img src="images/ai.jpg" alt="Project 2"></div>
-        <h3>AI Automation</h3>
-        <p>Boosting efficiency with custom AI-driven workflows and intelligent automation tools.</p>
-      </div>
-
-      <div class="project-card">
-        <div class="hex"><img src="images/cyber.jpg" alt="Project 3"></div>
-        <h3>Cybersecurity Upgrade</h3>
-        <p>Advanced security frameworks to safeguard business data against evolving threats.</p>
-      </div>
-
-      <div class="project-card">
-        <div class="hex"><img src="images/erp.jpg" alt="Project 4"></div>
-        <h3>ERP Solutions</h3>
-        <p>Tailored ERP implementations to streamline business operations and resource planning.</p>
-      </div>
-
-      <div class="project-card">
-        <div class="hex"><img src="images/data.jpg" alt="Project 5"></div>
-        <h3>Data Analytics</h3>
-        <p>Transforming raw data into actionable insights for smarter decision-making.</p>
-      </div>
-
-      <div class="project-card">
-        <div class="hex"><img src="images/mobile.jpg" alt="Project 6"></div>
-        <h3>Mobile Solutions</h3>
-        <p>Developing scalable mobile apps to enhance customer engagement and service delivery.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="testimonial-area">
-  <div class="container">
-    <div class="section-heading text-center">
-      <h4>— Testimonials —</h4>
-      <h2>A Word From Our Customers</h2>
-      <p>Real feedback from real customers.</p>
-    </div>
-
-    <div class="testi-wrap" aria-live="polite">
-
-      <div class="client-single active position-1" data-position="position-1">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=5" alt="Customer Sarah"></div>
-        <div class="client-comment">
-          <h3>"The team was extremely professional and delivered everything on time. I was impressed with the quality and dedication."</h3>
-          <span><i class="fa fa-quote-left"></i></span>
+    <div class="container1">
+      <!-- Project 1 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card1"></div>
+          <div class="border">
+            <p class="title">Cloud Integration</p>
+            <div class="slide">
+              <p class="para">Seamless migration and integration of enterprise systems into secure cloud platforms.</p>
+            </div>
+          </div>
         </div>
-        <div class="client-info"><h3>Customer</h3><p>Sarah J.</p></div>
       </div>
 
-      <div class="client-single inactive position-2" data-position="position-2">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=12" alt="Customer Mark"></div>
-        <div class="client-comment"><h3>"Great support and fast responses — their suggestions boosted our conversion rate within weeks."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>Mark R.</p></div>
+      <!-- Project 2 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card2"></div>
+          <div class="border">
+            <p class="title">AI Automation</p>
+            <div class="slide">
+              <p class="para">Boosting efficiency with custom AI-driven workflows and intelligent automation tools.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="client-single inactive position-3" data-position="position-3">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=7" alt="Customer Priya"></div>
-        <div class="client-comment"><h3>"Excellent design sense and attention to detail — our site now looks professional and modern."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>Priya K.</p></div>
+      <!-- Project 3 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card3"></div>
+          <div class="border">
+            <p class="title">Cybersecurity Upgrade</p>
+            <div class="slide">
+              <p class="para">Advanced security frameworks to safeguard business data against evolving threats.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="client-single inactive position-4" data-position="position-4">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=20" alt="Customer John"></div>
-        <div class="client-comment"><h3>"They took our brief and turned it into a product our users love. Communication was top notch."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>John P.</p></div>
+      <!-- Project 4 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card4"></div>
+          <div class="border">
+            <p class="title">ERP Solutions</p>
+            <div class="slide">
+              <p class="para">Tailored ERP implementations to streamline business operations and resource planning.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="client-single inactive position-5" data-position="position-5">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=18" alt="Customer Aisha"></div>
-        <div class="client-comment"><h3>"Working with them was effortless. They guided us through the process and delivered on time."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>Aisha S.</p></div>
+      <!-- Project 5 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card5"></div>
+          <div class="border">
+            <p class="title">Data Analytics</p>
+            <div class="slide">
+              <p class="para">Transforming raw data into actionable insights for smarter decision-making.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="client-single inactive position-6" data-position="position-6">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=32" alt="Customer Kevin"></div>
-        <div class="client-comment"><h3>"High quality work and good value for money. We've already recommended them to partners."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>Kevin L.</p></div>
+      <!-- Project 6 -->
+      <div class="panel">
+        <div class="ring">
+          <div class="card0 card6"></div>
+          <div class="border">
+            <p class="title">Mobile Solutions</p>
+            <div class="slide">
+              <p class="para">Developing scalable mobile apps to enhance customer engagement and service delivery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="testimonial-area" class="testimonial-area">
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="videos/about.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Content wrapper -->
+  <div class="testimonial-content">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h4>— Testimonials —</h4>
+        <h2>A Word From Our Customers</h2>
+        <p>Real feedback from real customers.</p>
       </div>
 
-      <div class="client-single inactive position-7" data-position="position-7">
-        <div class="client-img"><img src="https://i.pravatar.cc/300?img=45" alt="Customer Jen"></div>
-        <div class="client-comment"><h3>"Simple process, clear milestones — the result exceeded our expectations."</h3><span><i class="fa fa-quote-left"></i></span></div>
-        <div class="client-info"><h3>Customer</h3><p>Jen M.</p></div>
-      </div>
+      <div class="testi-wrap" aria-live="polite">
 
+        <div class="client-single active position-1" data-position="position-1">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=5" alt="Customer Sarah"></div>
+          <div class="client-comment">
+            <h3>"The team was extremely professional and delivered everything on time. I was impressed with the quality and dedication."</h3>
+            <span><i class="fa fa-quote-left"></i></span>
+          </div>
+          <div class="client-info"><h3>Customer</h3><p>Sarah J.</p></div>
+        </div>
+
+        <div class="client-single inactive position-2" data-position="position-2">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=12" alt="Customer Mark"></div>
+          <div class="client-comment"><h3>"Great support and fast responses — their suggestions boosted our conversion rate within weeks."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>Mark R.</p></div>
+        </div>
+
+        <div class="client-single inactive position-3" data-position="position-3">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=7" alt="Customer Priya"></div>
+          <div class="client-comment"><h3>"Excellent design sense and attention to detail — our site now looks professional and modern."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>Priya K.</p></div>
+        </div>
+
+        <div class="client-single inactive position-4" data-position="position-4">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=20" alt="Customer John"></div>
+          <div class="client-comment"><h3>"They took our brief and turned it into a product our users love. Communication was top notch."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>John P.</p></div>
+        </div>
+
+        <div class="client-single inactive position-5" data-position="position-5">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=18" alt="Customer Aisha"></div>
+          <div class="client-comment"><h3>"Working with them was effortless. They guided us through the process and delivered on time."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>Aisha S.</p></div>
+        </div>
+
+        <div class="client-single inactive position-6" data-position="position-6">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=32" alt="Customer Kevin"></div>
+          <div class="client-comment"><h3>"High quality work and good value for money. We've already recommended them to partners."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>Kevin L.</p></div>
+        </div>
+
+        <div class="client-single inactive position-7" data-position="position-7">
+          <div class="client-img"><img src="https://i.pravatar.cc/300?img=45" alt="Customer Jen"></div>
+          <div class="client-comment"><h3>"Simple process, clear milestones — the result exceeded our expectations."</h3><span><i class="fa fa-quote-left"></i></span></div>
+          <div class="client-info"><h3>Customer</h3><p>Jen M.</p></div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
@@ -484,12 +538,12 @@ body.loading {
     </div>
   </section>
 
-  <!-- <section class="blog-section">
+  <section class="blog-section">
   <div class="blog-header">
-    <h4>— Our Blogs —</h4>
-    <p>Explore the latest insights, tips, and business solutions that help you grow smarter and faster.</p>
+    <h4 data-aos="fade-up" data-aos-delay="200">— Our Blogs —</h4>
+    <p data-aos="fade-up" data-aos-delay="300">Explore the latest insights, tips, and business solutions that help you grow smarter and faster.</p>
   </div>
-  <div class="blog-slider">
+  <div class="blog-slider" data-aos="fade-up" data-aos-delay="400">
   <div class="blog-slider__wrp swiper-wrapper">
     <div class="blog-slider__item swiper-slide">
   <div class="blog-slider__img">
@@ -501,7 +555,7 @@ body.loading {
     <div class="blog-slider__text">
       Discover proven methods for business growth—covering automation, digital marketing, and team efficiency to help you scale faster.
     </div>
-        <a href="#" class="blog-slider__button">READ MORE</a>
+        <a href="404.html" class="blog-slider__button">READ MORE</a>
       </div>
     </div>
     <div class="blog-slider__item swiper-slide">
@@ -514,7 +568,7 @@ body.loading {
     <div class="blog-slider__text">
       Learn how artificial intelligence is transforming operations, from customer support chatbots to predictive data analysis.
     </div>
-        <a href="#" class="blog-slider__button">READ MORE</a>
+        <a href="404.html" class="blog-slider__button">READ MORE</a>
       </div>
     </div>
     
@@ -528,7 +582,7 @@ body.loading {
     <div class="blog-slider__text">
       Explore how cloud tools streamline collaboration, improve data security, and reduce costs for modern businesses.
     </div>
-     <a href="#" class="blog-slider__button">READ MORE</a>
+     <a href="404.html" class="blog-slider__button">READ MORE</a>
       </div>
     </div>
     
@@ -551,7 +605,7 @@ body.loading {
       transformation, or accelerating growth, we’re here to help your company
       stay ahead in a competitive market.
     </p>
-    <a href="#contact" class="btn">➝ Get Started</a>
+    <a href="404.html" class="btn">➝ Get Started</a>
   </div>
 </section>
 
@@ -566,23 +620,23 @@ body.loading {
         Stackly delivers tailored digital and business solutions that help companies 
         streamline processes, enhance productivity, and achieve long-term growth.
       </p>
-      <a href="#" class="footer-btn">➝ Read More</a>
+      <a href="404.html" class="footer-btn">➝ Read More</a>
     </div>
 
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">➝ About Us</a></li>
-        <li><a href="#">➝ Services</a></li>
-        <li><a href="#">➝ FAQs</a></li>
-        <li><a href="#">➝ Our Team</a></li>
-        <li><a href="#">➝ Contact Us</a></li>
+        <li><a href="404.html">➝ About Us</a></li>
+        <li><a href="404.html">➝ Services</a></li>
+        <li><a href="404.html">➝ FAQs</a></li>
+        <li><a href="404.html">➝ Our Team</a></li>
+        <li><a href="404.html">➝ Contact Us</a></li>
       </ul>
     </div>
 
     <div class="footer-contact">
       <h4>Where We Work</h4>
-      <p><i class="fas fa-map-marker-alt"></i> city, state, country</p>
+      <p><i class="fas fa-map-marker-alt"></i> City, State, Country</p>
       <p><i class="fas fa-phone"></i> +1234567890</p>
       <p><i class="fas fa-envelope"></i> support@stackly.com</p>
       <p><i class="fas fa-clock"></i> Mon - Sun: 08:00 - 17:00</p>
@@ -595,10 +649,10 @@ body.loading {
         and tips to grow your business smarter.
       </p>
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
       </div>
 
     </div>
@@ -618,7 +672,7 @@ body.loading {
   <div class="footer-bottom">
     <p>Copyright © 2023. Stackly Business Solution. All Rights Reserved.</p>
   </div>
-</footer> -->
+</footer>
 
 
 
@@ -643,6 +697,61 @@ body.loading {
     });
   </script>
 
+<!-- Your other scripts -->
 <script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  // Helper to auto-apply AOS + stagger delays
+  function applyStagger(selector, animation = 'fade-up', step = 120) {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      if (!el.getAttribute('data-aos')) el.setAttribute('data-aos', animation);
+      if (!el.getAttribute('data-aos-delay')) el.setAttribute('data-aos-delay', String(i * step));
+    });
+  }
+
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('loader-wrapper');
+
+    // ⏳ keep loader visible for 5 seconds
+    setTimeout(() => {
+      if (loader) {
+        loader.style.transition = 'opacity 500ms ease';
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 600);
+      }
+
+      // reveal split panels
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('hide'));
+
+      // unhide main content
+      const main = document.getElementById('main-content');
+      if (main) main.style.display = '';
+      document.body.classList.remove('loading');
+
+      // auto-apply stagger effects
+      applyStagger('.grid .card', 'flip-up', 140);
+      applyStagger('.process-row .process-step', 'fade-right', 120);
+      applyStagger(".panel", "zoom-in", 120);
+      applyStagger('.counter-section .counter-box', 'zoom-in', 120);
+      applyStagger('.blog-slider__item', 'fade-up', 160);
+      applyStagger('.challenge-section .challenge-content > *', 'fade-up', 200);
+
+      // initialize AOS
+      if (window.AOS) {
+        AOS.init({
+          duration: 1000,
+          once: false,   // replay animation when scrolling back
+          mirror: true,  // 🔥 animate both entering and leaving viewport
+          easing: 'ease-in-out'
+        });
+        AOS.refresh();
+      }
+    }, 3000); // loader 5s
+  });
+</script>
+
+
+
 </body>
 </html>
