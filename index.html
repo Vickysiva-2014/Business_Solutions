@@ -713,7 +713,7 @@ body.loading {
   window.addEventListener('load', function () {
     const loader = document.getElementById('loader-wrapper');
 
-    // ⏳ keep loader visible for 5 seconds
+    // ⏳ keep loader visible for 3s (adjust here if you want longer)
     setTimeout(() => {
       if (loader) {
         loader.style.transition = 'opacity 500ms ease';
@@ -724,9 +724,10 @@ body.loading {
       // reveal split panels
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('hide'));
 
-      // unhide main content
+      // ✅ unhide main content
       const main = document.getElementById('main-content');
-      if (main) main.style.display = '';
+      if (main) main.style.display = 'block'; // <-- set explicitly
+
       document.body.classList.remove('loading');
 
       // auto-apply stagger effects
@@ -742,12 +743,12 @@ body.loading {
         AOS.init({
           duration: 1000,
           once: false,   // replay animation when scrolling back
-          mirror: true,  // 🔥 animate both entering and leaving viewport
+          mirror: true,  // animate both entering and leaving viewport
           easing: 'ease-in-out'
         });
         AOS.refresh();
       }
-    }, 3000); // loader 5s
+    }, 3000); // loader 3s
   });
 </script>
 
