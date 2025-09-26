@@ -713,44 +713,43 @@ body.loading {
   window.addEventListener('load', function () {
     const loader = document.getElementById('loader-wrapper');
 
-    // ⏳ keep loader visible for 3s (adjust here if you want longer)
-    setTimeout(() => {
-      if (loader) {
-        loader.style.transition = 'opacity 500ms ease';
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 600);
-      }
+    // remove loader immediately after load
+    if (loader) {
+      loader.style.transition = 'opacity 500ms ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 600);
+    }
 
-      // reveal split panels
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('hide'));
+    // reveal split panels
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('hide'));
 
-      // ✅ unhide main content
-      const main = document.getElementById('main-content');
-      if (main) main.style.display = 'block'; // <-- set explicitly
+    // ✅ unhide main content
+    const main = document.getElementById('main-content');
+    if (main) main.style.display = 'block';
 
-      document.body.classList.remove('loading');
+    document.body.classList.remove('loading');
 
-      // auto-apply stagger effects
-      applyStagger('.grid .card', 'flip-up', 140);
-      applyStagger('.process-row .process-step', 'fade-right', 120);
-      applyStagger(".panel", "zoom-in", 120);
-      applyStagger('.counter-section .counter-box', 'zoom-in', 120);
-      applyStagger('.blog-slider__item', 'fade-up', 160);
-      applyStagger('.challenge-section .challenge-content > *', 'fade-up', 200);
+    // auto-apply stagger effects
+    applyStagger('.grid .card', 'flip-up', 140);
+    applyStagger('.process-row .process-step', 'fade-right', 120);
+    applyStagger('.panel', 'zoom-in', 120);
+    applyStagger('.counter-section .counter-box', 'zoom-in', 120);
+    applyStagger('.blog-slider__item', 'fade-up', 160);
+    applyStagger('.challenge-section .challenge-content > *', 'fade-up', 200);
 
-      // initialize AOS
-      if (window.AOS) {
-        AOS.init({
-          duration: 1000,
-          once: false,   // replay animation when scrolling back
-          mirror: true,  // animate both entering and leaving viewport
-          easing: 'ease-in-out'
-        });
-        AOS.refresh();
-      }
-    }, 3000); // loader 3s
+    // initialize AOS
+    if (window.AOS) {
+      AOS.init({
+        duration: 1000,
+        once: false,
+        mirror: true,
+        easing: 'ease-in-out'
+      });
+      AOS.refresh();
+    }
   });
 </script>
+
 
 
 
