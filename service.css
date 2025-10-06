@@ -637,12 +637,14 @@ a.learn::after {
   border-radius: 12px;
   width: 300px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
 }
 
 .process-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-20px);
+  box-shadow: 0 10px 20px rgba(221, 10, 151, 0.3);
 }
+
 
 .process-img {
   position: relative;
