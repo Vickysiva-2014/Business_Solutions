@@ -336,7 +336,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000; /* fallback if video fails */
+  background: white;
   overflow: hidden; /* hides overflow video */
 }
 
@@ -801,22 +801,7 @@ body {
   text-align: center;
   overflow: hidden;
   color: #ffffff9b;
-}
-
-/* Background video */
-.projects-section .bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  display: block;         /* ensure proper rendering */
-  pointer-events: none;   /* disable click */
-  user-select: none;
-  filter: brightness(1); /* darken instead of brighten */
-  background-color: black; /* fallback in case video fails */
+  background-color: #c1bbbb;
 }
 
 /* Content sits above video */
