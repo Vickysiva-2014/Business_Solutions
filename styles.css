@@ -496,9 +496,18 @@ header nav ul li .dropdown-menu li a:hover {
     font-size: 0.9rem;
   }
 
+
+}
+
+
+@media (max-width: 768px) {
   .bg-video {
-    min-height: 300px; /* adjust so video is visible on mobile */
-    object-fit: cover;
+    display: none; /* hide video on mobile */
+  }
+  .hero {
+    background-image: url('images/Background_M.png');
+    background-size: cover;
+    background-position: center;
   }
 }
 
