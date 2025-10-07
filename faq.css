@@ -155,6 +155,203 @@ header .btn {
   transform: scale(1.2);
 }
 
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
+}
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: 0.3s;
+}
+
+/* Header & Navbar */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: white;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  position: relative;
+}
+
+header nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #8e0a64;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+header nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Button */
+header nav .button-92 {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header nav .button-92 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 15px;
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .top-bar .left span {
+    margin-right: 10px;
+  }
+
+  .top-bar .right .social {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+}
+
+/* Hamburger Animation */
+.hamburger.toggle .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.toggle .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.toggle .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* Make dropdown parent relative */
+header nav ul li.dropdown {
+  position: relative;
+}
+
+/* Dropdown menu */
+header nav ul li .dropdown-menu {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 100%; /* directly below parent */
+  left: 0;
+  background: #fff;
+  min-width: 140px;
+  border-radius: 6px;
+  margin-left: -10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0;
+  z-index: 100;
+}
+
+/* Dropdown menu links */
+header nav ul li .dropdown-menu li a {
+  display: block;
+  margin-left: -10px;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+header nav ul li .dropdown-menu li a:hover {
+  background: #8e0a64;
+  color: #fff;
+}
+
+/* Desktop: hover shows menu */
+@media (min-width: 769px) {
+  header nav ul li.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Mobile: keep click on arrow (JS handles it) */
+@media (max-width: 768px) {
+  header nav ul li .dropdown-menu {
+    position: relative;
+    top: 0;
+    color: #850968;
+    box-shadow: none;
+  }
+
+   header nav ul li  .dropdown-menu li a {
+    position: relative;
+    top: 0;
+    background-color:#850968;
+    color: white;
+    box-shadow: none;
+  }
+
+  .dropdown-arrow {
+    background-color: #850968;
+    color: white;
+  }
+}
 
 .cursor-dot {
   position: fixed;
@@ -261,7 +458,9 @@ header .btn {
   color: #ddd;
 }
 
-
+.faq-section {
+  overflow: hidden;
+}
 .faq-title {
     display: flex;
     align-items: center;
@@ -284,6 +483,76 @@ header .btn {
   .faq-item.active .faq-content {
     display: block;
   }
+
+  /* Tablet devices (up to 992px) */
+@media (max-width: 992px) {
+  section div[style*="display:flex"] {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Video container */
+  section div[style*="position:relative"][style*="height:400px"] {
+    height: 300px;
+  }
+
+  /* Headings & paragraph */
+  section h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  section p {
+    font-size: 15px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* FAQ container */
+  .faq-container {
+    padding: 15px;
+  }
+
+  .faq-title {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .faq-content {
+    font-size: 14px;
+    margin: 6px 0 12px 20px;
+  }
+}
+
+/* Mobile devices (up to 576px) */
+@media (max-width: 576px) {
+  section div[style*="position:relative"][style*="height:400px"] {
+    height: 220px;
+  }
+
+  section h2 {
+    font-size: 20px;
+  }
+
+  section p {
+    font-size: 14px;
+  }
+
+  .faq-title {
+    font-size: 15px;
+  }
+
+  .faq-content {
+    font-size: 13px;
+    margin: 5px 0 10px 15px;
+  }
+
+  .faq-container {
+    padding: 10px;
+  }
+}
+
+  
 
       .footer {
   background: linear-gradient(rgba(19, 1, 63, 0.92), rgba(35, 2, 67, 0.92)),

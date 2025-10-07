@@ -156,6 +156,204 @@ header .btn {
 }
 
 
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
+}
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: 0.3s;
+}
+
+/* Header & Navbar */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: white;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  position: relative;
+}
+
+header nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #8e0a64;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+header nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Button */
+header nav .button-92 {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header nav .button-92 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 15px;
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .top-bar .left span {
+    margin-right: 10px;
+  }
+
+  .top-bar .right .social {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+}
+
+/* Hamburger Animation */
+.hamburger.toggle .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.toggle .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.toggle .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* Make dropdown parent relative */
+header nav ul li.dropdown {
+  position: relative;
+}
+
+/* Dropdown menu */
+header nav ul li .dropdown-menu {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 100%; /* directly below parent */
+  left: 0;
+  background: #fff;
+  min-width: 140px;
+  border-radius: 6px;
+  margin-left: -10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0;
+  z-index: 100;
+}
+
+/* Dropdown menu links */
+header nav ul li .dropdown-menu li a {
+  display: block;
+  margin-left: -10px;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+header nav ul li .dropdown-menu li a:hover {
+  background: #8e0a64;
+  color: #fff;
+}
+
+/* Desktop: hover shows menu */
+@media (min-width: 769px) {
+  header nav ul li.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Mobile: keep click on arrow (JS handles it) */
+@media (max-width: 768px) {
+  header nav ul li .dropdown-menu {
+    position: relative;
+    top: 0;
+    color: #850968;
+    box-shadow: none;
+  }
+
+   header nav ul li  .dropdown-menu li a {
+    position: relative;
+    top: 0;
+    background-color:#850968;
+    color: white;
+    box-shadow: none;
+  }
+
+  .dropdown-arrow {
+    background-color: #850968;
+    color: white;
+  }
+}
+
 .cursor-dot {
   position: fixed;
   top: 0;
@@ -476,6 +674,103 @@ header .btn {
 }
 
 
+/* Mobile Responsive CSS */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 30px;
+  }
+
+  .about-images .main-img img {
+    width: 100%;
+    max-height: 300px; /* reduce height on smaller screens */
+    clip-path: polygon(
+      20px 0,
+      100% 0,
+      100% calc(100% - 30px),
+      calc(100% - 30px) 100%,
+      0 100%,
+      0 20px
+    );
+  }
+
+  .about-images .overlay-img {
+    top: auto;
+    bottom: -20px; /* position below main image */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px; /* smaller overlay image */
+  }
+
+  .about-images .overlay-img img {
+    width: 100%;
+  }
+
+  .stats-card {
+    position: static;
+    margin-top: 20px;
+    left: auto;
+    bottom: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .about-content h2 {
+    font-size: 28px;
+  }
+
+  .about-content p {
+    font-size: 15px;
+  }
+
+  .features {
+    grid-template-columns: 1fr; /* single column for features */
+  }
+
+  .cta {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .call-box {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .call-box span {
+    justify-content: center;
+  }
+}
+
+/* Extra small devices (mobile portrait) */
+@media (max-width: 576px) {
+  .about-company {
+    padding: 60px 5%;
+  }
+
+  .about-content h2 {
+    font-size: 24px;
+  }
+
+  .about-content p {
+    font-size: 14px;
+  }
+
+  .features li {
+    font-size: 14px;
+  }
+
+  .overlay-img {
+    width: 140px;
+  }
+}
+
+
 .skills-section {
   display: flex;
   align-items: center;
@@ -550,6 +845,78 @@ header .btn {
   font-weight: bold;
   color: white;
 }
+
+/* Tablet devices */
+@media (max-width: 992px) {
+  .skills-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 50px 5%;
+    text-align: center;
+  }
+
+  .skills-content {
+    width: 100%;
+  }
+
+  .skills-content h2 {
+    font-size: 30px;
+  }
+
+  .skills-content h4 {
+    font-size: 16px;
+  }
+
+  .skills-content p {
+    max-width: 100%;
+    font-size: 15px;
+  }
+
+  .skill {
+    width: 100%;
+  }
+
+  .progress-bar {
+    height: 14px;
+  }
+
+  .progress {
+    font-size: 11px;
+    padding-right: 4px;
+  }
+}
+
+/* Mobile devices (portrait) */
+@media (max-width: 576px) {
+  .skills-section {
+    padding: 40px 5%;
+    gap: 20px;
+  }
+
+  .skills-content h2 {
+    font-size: 24px;
+  }
+
+  .skills-content h4 {
+    font-size: 14px;
+  }
+
+  .skills-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .progress-bar {
+    height: 12px;
+  }
+
+  .progress {
+    font-size: 10px;
+    padding-right: 3px;
+  }
+}
+
 
 .team {
     max-width: 1200px;
