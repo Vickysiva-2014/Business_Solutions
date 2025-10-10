@@ -879,7 +879,7 @@ nav ul li.dropdown {
 .cards-container {
   display: flex;
   justify-content: space-between; /* Spread cards evenly */
-  gap: 30px;
+  gap: 20px;
   flex-wrap: nowrap; /* Prevent wrapping to next line */
   flex-direction: row;
   flex-wrap: nowrap;
@@ -2099,4 +2099,5 @@ button:hover {
 
 .headShake {
   animation: headShake 2s ease;
+
 }
