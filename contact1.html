@@ -25,7 +25,6 @@
     <img src="Images1/logo.png" alt="logo">
   </div>
 
-  <!-- Mobile Toggle -->
   <div class="mobile-toggle">
     <span></span>
     <span></span>
@@ -46,7 +45,6 @@
       <li><a href="team.html">Our Team</a></li>
       <li><a href="contact1.html">Contact</a></li>
 
-      <!-- Move Button Inside Menu for Mobile -->
       <li class="menu-button">
         <a href="signin1.html" class="btn-connect">Let’s Connect →</a>
       </li>
@@ -54,7 +52,6 @@
   </nav>
 </header>
 
-<!-- Hero Section -->
 <section class="hero-features">
   <div class="hero-center">
     <p class="breadcrumb">Home / Contact</p>
@@ -67,7 +64,6 @@
 <section class="contact-section">
   <div class="contact-container">
     
-    <!-- Left Info Section -->
     <div class="contact-info" data-animate="bounceInLeft">
       <h3>Any Questions? Call us</h3>
       <p><a href="#">+91 1234567890</a></p>
@@ -86,7 +82,6 @@
       </div>
     </div>
 
-    <!-- Right Form Section -->
     <div class="contact-form" data-animate="bounceInRight">
       <h2>Get in Touch With Us</h2>
 <form id="contactForm">
@@ -105,7 +100,6 @@
 
   </div>
 
-  <!-- Google Map -->
   <div class="map-container" data-animate="bounceIn">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.5168470539913!2d78.14601487480712!3d11.664325341425021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1b1f8d75b2f%3A0x2a0a4c0033db0324!2sSalem%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1728380320001!5m2!1sen!2sin"
@@ -132,16 +126,13 @@
   </div>
 
 
-  <!-- Footer -->
   <footer>
     <div class="footer-container scroll-animate" data-animate="bounceInUp">
-      <!-- Logo Section -->
       <div class="footer-logo-section">
         <img src="Images1/logo.png" alt="Business Solutions Logo">
         <p>We provide smart, scalable, and secure business solutions to help organizations achieve digital excellence and operational efficiency worldwide.</p>
       </div>
 
-      <!-- Services -->
       <div class="footer-column">
         <h3>Our Services</h3>
         <ul>
@@ -153,7 +144,6 @@
         </ul>
       </div>
 
-      <!-- Contact Info -->
       <div class="footer-column">
         <h3>Contact Info</h3>
         <ul>
@@ -165,7 +155,6 @@
         </ul>
       </div>
 
-      <!-- Newsletter -->
       <div class="footer-column newsletter">
         <h3>Newsletter</h3>
         <input type="email" placeholder="Enter your email address">
@@ -179,7 +168,6 @@
       </div>
     </div>
 
-    <!-- Bottom Footer -->
     <div class="footer-bottom">
       <p>© 2025 BusinessSolutions. All Rights Reserved.</p>
       <div>
@@ -194,7 +182,7 @@
 
 
     <script>
-    // Intersection Observer for scroll animations
+
     const elements = document.querySelectorAll("[data-animate]");
 
     const observer = new IntersectionObserver(entries => {
@@ -211,7 +199,7 @@
   </script>
 
 <script>
-// Mobile Hamburger Toggle
+
 const toggle = document.querySelector('.mobile-toggle');
 const nav = document.querySelector('nav');
 
@@ -220,23 +208,23 @@ toggle.addEventListener('click', () => {
   toggle.classList.toggle('toggle');
 });
 
-// Dropdown Arrow Click
+
 document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
   arrow.addEventListener('click', function(e) {
-    e.stopPropagation(); // prevent menu from closing immediately
+    e.stopPropagation();
     const dropdown = this.parentElement.querySelector('.dropdown-content');
 
-    // Close other open dropdowns
+    
     document.querySelectorAll('.dropdown-content').forEach(menu => {
       if (menu !== dropdown) menu.style.display = 'none';
     });
 
-    // Toggle current dropdown
+
     dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
   });
 });
 
-// Close dropdown when clicking outside
+
 document.addEventListener('click', function() {
   document.querySelectorAll('.dropdown-content').forEach(menu => {
     menu.style.display = 'none';
@@ -249,9 +237,8 @@ document.addEventListener('click', function() {
   const form = document.getElementById('contactForm');
 
   form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     
-    // Check all required fields
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -262,8 +249,6 @@ document.addEventListener('click', function() {
       alert('Please fill all required fields!');
       return;
     }
-
-    // If all required fields are filled, redirect to 404.html
     window.location.href = '404_1.html';
   });
 </script>

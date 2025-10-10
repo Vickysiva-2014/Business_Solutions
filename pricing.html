@@ -25,7 +25,7 @@
     <img src="Images1/logo.png" alt="logo">
   </div>
 
-  <!-- Mobile Toggle -->
+
   <div class="mobile-toggle">
     <span></span>
     <span></span>
@@ -46,7 +46,7 @@
       <li><a href="team.html">Our Team</a></li>
       <li><a href="contact1.html">Contact</a></li>
 
-      <!-- Move Button Inside Menu for Mobile -->
+
       <li class="menu-button">
         <a href="signin1.html" class="btn-connect">Let’s Connect →</a>
       </li>
@@ -54,7 +54,7 @@
   </nav>
 </header>
 
-<!-- Hero Section -->
+
 <section class="hero-features">
   <div class="hero-center">
     <p class="breadcrumb">Home / Pricing</p>
@@ -71,7 +71,7 @@
 
     <div class="pricing-container">
       
-      <!-- Basic Plan -->
+
       <div class="pricing-card scroll-animate" data-animate="bounceInLeft">
         <div class="plan-header">
           <h3>Standard Plan</h3>
@@ -93,7 +93,7 @@
         </ul>
       </div>
 
-      <!-- Premium Plan -->
+
       <div class="pricing-card premium scroll-animate" data-animate="bounceInUp">
         <div class="plan-header">
           <h3>Premium Plan</h3>
@@ -115,7 +115,7 @@
         </ul>
       </div>
 
-      <!-- Free Plan -->
+
       <div class="pricing-card scroll-animate" data-animate="bounceInRight">
         <div class="plan-header">
           <h3>Standard Plan</h3>
@@ -151,7 +151,7 @@
 </form>
   </div>
 
-  <!-- Optional Decorative Icons -->
+
   <img src="Images1/megaphone.png" class="icon1 icon-left" alt="">
   <img src="Images1/target.png" class="icon1 icon-right" alt="">
   <img src="Images1/rocket.png" class="icon1 icon-bottom" alt="">
@@ -169,16 +169,16 @@
   </div>
 
 
-  <!-- Footer -->
+
   <footer>
     <div class="footer-container scroll-animate" data-animate="bounceInUp">
-      <!-- Logo Section -->
+
       <div class="footer-logo-section">
         <img src="Images1/logo.png" alt="Business Solutions Logo">
         <p>We provide smart, scalable, and secure business solutions to help organizations achieve digital excellence and operational efficiency worldwide.</p>
       </div>
 
-      <!-- Services -->
+
       <div class="footer-column">
         <h3>Our Services</h3>
         <ul>
@@ -190,7 +190,7 @@
         </ul>
       </div>
 
-      <!-- Contact Info -->
+
       <div class="footer-column">
         <h3>Contact Info</h3>
         <ul>
@@ -202,7 +202,7 @@
         </ul>
       </div>
 
-      <!-- Newsletter -->
+
       <div class="footer-column newsletter">
         <h3>Newsletter</h3>
         <input type="email" placeholder="Enter your email address">
@@ -216,7 +216,7 @@
       </div>
     </div>
 
-    <!-- Bottom Footer -->
+
     <div class="footer-bottom">
       <p>© 2025 BusinessSolutions. All Rights Reserved.</p>
       <div>
@@ -228,7 +228,7 @@
 <script src="script.js"></script>
 
     <script>
-    // Intersection Observer for scroll animations
+
     const elements = document.querySelectorAll("[data-animate]");
 
     const observer = new IntersectionObserver(entries => {
@@ -245,7 +245,7 @@
   </script>
 
 <script>
-// Mobile Hamburger Toggle
+
 const toggle = document.querySelector('.mobile-toggle');
 const nav = document.querySelector('nav');
 
@@ -254,23 +254,23 @@ toggle.addEventListener('click', () => {
   toggle.classList.toggle('toggle');
 });
 
-// Dropdown Arrow Click
+
 document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
   arrow.addEventListener('click', function(e) {
-    e.stopPropagation(); // prevent menu from closing immediately
+    e.stopPropagation(); 
     const dropdown = this.parentElement.querySelector('.dropdown-content');
 
-    // Close other open dropdowns
+
     document.querySelectorAll('.dropdown-content').forEach(menu => {
       if (menu !== dropdown) menu.style.display = 'none';
     });
 
-    // Toggle current dropdown
+   
     dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
   });
 });
 
-// Close dropdown when clicking outside
+
 document.addEventListener('click', function() {
   document.querySelectorAll('.dropdown-content').forEach(menu => {
     menu.style.display = 'none';
@@ -288,11 +288,11 @@ function validateEmail() {
   if (email === "") {
     errorMsg.textContent = "Please fill the field.";
     errorMsg.style.color = "red";
-    return false; // prevent form submission
+    return false; 
   } else {
     errorMsg.textContent = "";
-    window.location.href = "404_1.html"; // go to 404 page
-    return false; // prevent default form submit
+    window.location.href = "404_1.html"; 
+    return false;
   }
 }
 </script>

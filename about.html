@@ -24,13 +24,11 @@
     </div>
   </div>
 
-  <!-- Navbar -->
   <header>
     <div class="logo">
       <img src="images/logo.png" alt="Logo">
     </div>
 
-    <!-- Hamburger for mobile -->
     <div class="hamburger">
       <div class="bar"></div>
       <div class="bar"></div>
@@ -70,7 +68,6 @@
   <div class="container">
     <div class="about-grid">
       
-      <!-- Left: Images + Card -->
       <div class="about-images">
         <div class="main-img">
           <img src="images/about-1.jpg" alt="IT Team">
@@ -85,7 +82,6 @@
         </div>
       </div>
 
-      <!-- Right: Content -->
       <div class="about-content" data-aos="fade-up" data-aos-delay="300">
         <span class="tag"><i class="fa-solid fa-building"></i> About Company</span>
         <h2>Building The Future With <br> Cutting-Edge Business Solutions</h2>
@@ -249,7 +245,7 @@ Stay strong and resilient. Embrace challenges with courage, and let growth guide
         <div class="service-number">01</div>
         <h3>Business Consulting</h3>
         <p>We provide expert advice and free consultations to help businesses achieve long-term growth.</p>
-        <!-- Triangles -->
+
         <div class="triangles">
           <div class="triangle"></div>
           <div class="triangle yellow"></div>
@@ -262,7 +258,7 @@ Stay strong and resilient. Embrace challenges with courage, and let growth guide
         <div class="service-number">02</div>
         <h3>Invest Process</h3>
         <p>Guiding you through investment strategies with high returns and smart financial planning.</p>
-        <!-- Triangles -->
+
         <div class="triangles">
           <div class="triangle"></div>
           <div class="triangle yellow"></div>
@@ -275,7 +271,7 @@ Stay strong and resilient. Embrace challenges with courage, and let growth guide
         <div class="service-number">03</div>
         <h3>Life Insurance</h3>
         <p>Secure your future with our customized life insurance plans designed for peace of mind.</p>
-        <!-- Triangles -->
+
         <div class="triangles">
           <div class="triangle"></div>
           <div class="triangle yellow"></div>
@@ -360,9 +356,9 @@ Stay strong and resilient. Embrace challenges with courage, and let growth guide
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
-      duration: 1000,   // animation duration in ms
-      once: false,      // replay animation when scrolling back
-      mirror: true,     // animate both entering and leaving viewport
+      duration: 1000,   
+      once: false,      
+      mirror: true,     
       easing: 'ease-in-out'
     });
   });
@@ -378,17 +374,17 @@ document.addEventListener("DOMContentLoaded", () => {
   bars.forEach(bar => {
     const percent = parseInt(bar.dataset.percent);
     let current = 0;
-    let direction = 1; // 1 = increasing, -1 = decreasing
-    const speed = 0.3; // smaller = slower
+    let direction = 1; 
+    const speed = 0.3;
 
     function animateBar() {
-      current += direction * speed; // slow down increment
+      current += direction * speed;
       if (current >= percent) {
         direction = -1;
-        current = percent; // prevent overshoot
+        current = percent;
       } else if (current <= 0) {
         direction = 1;
-        current = 0; // prevent undershoot
+        current = 0;
       }
 
       bar.style.width = current + "%";
@@ -425,8 +421,6 @@ if (window.innerWidth <= 768) {
 
 </script>
 
-
-<!-- Your other scripts -->
 <script src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 

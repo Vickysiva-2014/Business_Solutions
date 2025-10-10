@@ -288,7 +288,27 @@ header nav .button-92 {
   }
 }
 
-/* Hamburger Animation */
+
+@media (min-width: 320px) and (max-width: 380px) {
+  .top-bar .right {
+    gap: 4px;
+  }
+
+  .top-bar .right .social {
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .top-bar {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
+
+
+
 .hamburger.toggle .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }

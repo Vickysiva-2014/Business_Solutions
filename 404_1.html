@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 Astronaut Page</title>
 <style>
-/* General Reset */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   width: 100vw;
@@ -18,7 +17,6 @@ body {
   background-image: linear-gradient(92deg, #0b0d0d, #180708, #ff2121);
 }
 
-/* Stars */
 .stars { position: absolute; width: 100%; height: 100%; top:0; left:0; }
 .star {
   width: 6px;
@@ -41,7 +39,6 @@ body {
   }
 }
 
-/* Center Container */
 .center {
   position: absolute;
   top:50%;
@@ -60,7 +57,6 @@ body {
 .four--1 { top:-100px; left:-180px; z-index:1; }
 .four--2 { top:-100px; left:80px; z-index:3; }
 
-/* Astronaut */
 .astronaut { position:absolute; top:-115px; left:-30px; transform: rotate(17deg); }
 .astronaut-backpack { width:100px; height:100px; background:#e3e3e3; border-radius:10px; }
 .astronaut-helmet { position:absolute; top:-30px; left:50%; width:66px; height:66px; border-radius:50%; background:white; box-shadow:0 5px 1px -3px gray; transform: translateX(-50%); z-index:3; overflow:hidden; }
@@ -79,7 +75,7 @@ body {
 
 .oh {
   transition: all 0.1s linear;
-  animation: floating 4s ease-in-out infinite; /* continuous floating */
+  animation: floating 4s ease-in-out infinite;
   z-index:2;
 }
 
@@ -95,7 +91,7 @@ body {
 
 .button {
   position: absolute;
-  top: 120px;             /* Corrected capitalization */
+  top: 120px;             
   left: 50%;
   width: 120px;
   transform: translateX(-50%);
@@ -104,16 +100,16 @@ body {
   border-radius: 3px;
   cursor: pointer;
   z-index: 999;
-  background: none;        /* Removes background color */
-  color: white;            /* Ensures text is visible */
+  background: none;        
+  color: white;            
 }
 
 .button:hover {
-  background: rgba(255, 255, 255, 0.2); /* Slight white overlay on hover */
-  border-color: #ff4980;                 /* Optional: change border color */
-  color: #fff;                           /* Keep text visible */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* subtle glow */
-  transition: all 0.3s ease;             /* smooth effect */
+  background: rgba(255, 255, 255, 0.2); 
+  border-color: #ff4980;                 
+  color: #fff;                           
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;             
 }
 
 .button:active { transform: translateX(-50%) scale(0.95); }
@@ -129,13 +125,13 @@ body {
   100% { transform: translate(-10px, -5px) rotate(-2deg); }
 }
 
-/* Mobile Device Styles */
+
 @media (max-width: 480px) {
   body {
     font-size: 10px;
   }
 
-  /* Center Container */
+
   .center .circle--outer {
     width: 300px;
     height: 300px;
@@ -146,7 +142,7 @@ body {
     height: 180px;
   }
 
-  /* 404 Text */
+ 
   .four {
     font-size: 80px;
   }
@@ -154,7 +150,7 @@ body {
   .four--1 { top: -50px; left: -80px; }
   .four--2 { top: -50px; left: 40px; }
 
-  /* Astronaut */
+
   .astronaut {
     top: -70px;
     left: -15px;
@@ -190,7 +186,6 @@ body {
     width: 70px;
   }
 
-  /* Planet */
   .planet {
     width: 100px;
     height: 100px;
@@ -206,7 +201,6 @@ body {
   .crater--5 { width:15px; height:15px; top:75px; left:30px; }
   .crater--6 { width:8px; height:8px; top:78px; left:65px; }
 
-  /* Button */
   .button {
     top: 90px;
     width: 100px;
@@ -219,14 +213,14 @@ body {
     font-size: 12px;
   }
 
-  /* Stars */
+
   .star {
     width: 3px;
     height: 3px;
   }
 }
 
-/* Generate stars with JS equivalent for Pug loop */
+
 </style>
 </head>
 <body>
@@ -273,7 +267,7 @@ body {
 </div>
 
 <script>
-// Generate 80 stars
+
 document.addEventListener('mousemove', event => {
   let domainX = [0, document.body.clientWidth],
       domainY = [0, document.body.clientHeight],
@@ -294,19 +288,19 @@ document.addEventListener('mouseleave', event => {
 </script>
 
 <script>
-// Generate 80 stars
+
 const starsContainer = document.querySelector('.stars');
 for (let i = 0; i < 80; i++) {
   const star = document.createElement('div');
   star.classList.add('star');
-  // Random position
+
   star.style.top = Math.random() * window.innerHeight + 'px';
   star.style.left = Math.random() * window.innerWidth + 'px';
-  // Random size
+
   const size = Math.random() * 2 + 1;
   star.style.width = size + 'px';
   star.style.height = size + 'px';
-  // Random blink speed
+
   star.style.animationDuration = (Math.random() * 2 + 1) + 's';
   starsContainer.appendChild(star);
 }

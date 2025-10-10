@@ -24,14 +24,12 @@
     </div>
   </div>
 
-  <!-- Navbar -->
-  <header>
+   <header>
     <div class="logo">
       <img src="images/logo.png" alt="Logo">
     </div>
 
-    <!-- Hamburger for mobile -->
-    <div class="hamburger">
+      <div class="hamburger">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
@@ -70,10 +68,8 @@
     <div class="container1">
       <div class="row">
 
-        <!-- Blog Content -->
         <div class="blog-content">
 
-          <!-- Blog Item -->
           <div class="blog-card">
             <div class="blog-img">
               <img src="images/news1.jpg" alt="">
@@ -91,7 +87,6 @@
             </div>
           </div>
 
-          <!-- Blog Item -->
           <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
             <div class="blog-img">
               <img src="images/news2.jpg" alt="">
@@ -109,7 +104,6 @@
             </div>
           </div>
 
-          <!-- Blog Item -->
           <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
             <div class="blog-img">
               <img src="images/news3.jpg" alt="">
@@ -128,11 +122,10 @@
           </div>
         </div>
 
-        <!-- Sidebar -->
         <div class="blog-sidebar">
 
 
-          <!-- Categories -->
+
           <div class="sidebar-widget category-widget" data-aos="fade-up" data-aos-delay="200">
             <h4 class="widget-title">Category</h4>
             <ul>
@@ -145,7 +138,6 @@
             </ul>
           </div>
 
-          <!-- Recent Posts -->
           <div class="sidebar-widget recent-widget" data-aos="fade-up" data-aos-delay="300">
             <h4 class="widget-title">Recent Post</h4>
             <div class="recent-item">
@@ -162,7 +154,6 @@
             </div>
           </div>
 
-          <!-- Tags -->
           <div class="sidebar-widget tag-widget"  data-aos="fade-up" data-aos-delay="400">
             <h4 class="widget-title">Tags Cloud</h4>
             <div class="tags">
@@ -258,9 +249,9 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
-      duration: 1000,   // animation duration in ms
-      once: false,      // replay animation when scrolling back
-      mirror: true,     // animate both entering and leaving viewport
+      duration: 1000,
+      once: false,      
+      mirror: true,     
       easing: 'ease-in-out'
     });
   });
@@ -276,17 +267,17 @@ document.addEventListener("DOMContentLoaded", () => {
   bars.forEach(bar => {
     const percent = parseInt(bar.dataset.percent);
     let current = 0;
-    let direction = 1; // 1 = increasing, -1 = decreasing
-    const speed = 0.3; // smaller = slower
+    let direction = 1; 
+    const speed = 0.3;
 
     function animateBar() {
-      current += direction * speed; // slow down increment
+      current += direction * speed;
       if (current >= percent) {
         direction = -1;
-        current = percent; // prevent overshoot
+        current = percent;
       } else if (current <= 0) {
         direction = 1;
-        current = 0; // prevent undershoot
+        current = 0;
       }
 
       bar.style.width = current + "%";
@@ -324,8 +315,6 @@ if (window.innerWidth <= 768) {
 
 </script>
 
-
-<!-- Your other scripts -->
 <script src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 

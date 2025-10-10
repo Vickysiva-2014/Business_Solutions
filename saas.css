@@ -13,7 +13,7 @@
       overflow-x: hidden;
     }
 
-    /* Grid Background */
+
     body::before {
       content: "";
       position: fixed;
@@ -72,9 +72,6 @@
   transform: scale(1.2);
 }
 
-
-    /* Navbar */
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -442,7 +439,7 @@ nav ul li.dropdown {
 
   .hero-image {
     width: 350px;
-    margin: 60px auto 0;
+    margin: 20px auto 0;
     animation: floatDiamond 5s ease-in-out infinite;
   }
 }
@@ -2141,4 +2138,22 @@ button:hover {
 
 .headShake {
   animation: headShake 2s ease;
+}
+
+@media (min-width: 320px) and (max-width: 380px) {
+  .top-bar .right {
+    gap: 4px;
+  }
+
+  .top-bar .right .social {
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .top-bar {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
 }
