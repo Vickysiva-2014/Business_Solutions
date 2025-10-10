@@ -878,10 +878,13 @@ nav ul li.dropdown {
 
 .cards-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Spread cards evenly */
   gap: 30px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent wrapping to next line */
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
+
 
 .solution-card {
   background: #101a20;
