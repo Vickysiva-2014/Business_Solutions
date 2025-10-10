@@ -885,6 +885,13 @@ nav ul li.dropdown {
   flex-wrap: nowrap;
 }
 
+@media (max-width: 1024px) {
+  .cards-container {
+    flex-wrap: wrap; /* Allow wrap on tablets */
+    justify-content: center;
+  }
+}
+
 
 .solution-card {
   background: #101a20;
@@ -2101,3 +2108,4 @@ button:hover {
   animation: headShake 2s ease;
 
 }
+
