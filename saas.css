@@ -512,8 +512,16 @@ nav ul li.dropdown {
 
   .hero-image {
     width: 220px;
-    margin-left: -100px;              /* remove top/bottom gap */
+    margin: 0 auto;               /* remove top/bottom gap */
     animation: floatDiamond 4s ease-in-out infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  @keyframes floatDiamond {
+    0% { transform: translateX(-20px); }   /* move slightly left */
+    50% { transform: translateX(20px); }   /* move slightly right */
+    100% { transform: translateX(-20px); } /* back to left */
   }
 }
 
@@ -542,7 +550,7 @@ nav ul li.dropdown {
 
   .hero-image {
     width: 190px;
-    margin-left: -100px;
+    margin: 0 auto;
   }
 }
 
