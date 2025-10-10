@@ -1,34 +1,11 @@
 
-
-
-  // window.addEventListener("load", () => {
-  //   // Small delay for animation effect
-  //   setTimeout(() => {
-  //     // Hide loader
-  //     document.getElementById("loader-wrapper").style.display = "none";
-
-  //     // Animate reveal panels
-  //     document.querySelectorAll(".reveal").forEach(panel => {
-  //       panel.classList.add("hide");
-  //     });
-
-  //     // Show main content
-  //     document.getElementById("main-content").style.display = "block";
-
-  //     // Remove loading class from body
-  //     document.body.classList.remove("loading");
-  //   }, 800); // adjust delay as you like
-  // });
-
-
-/* JS: add a small stagger (and start animations reliably) */
 document.addEventListener('DOMContentLoaded', function () {
   const letters = document.querySelectorAll('.center h1 span');
-  const stagger = 0.03; // seconds between letters — tweak to taste
+  const stagger = 0.03;
 
   letters.forEach((span, i) => {
     span.style.animationDelay = (i * stagger) + 's';
-    // start the animation (it was paused initially)
+
     span.style.animationPlayState = 'running';
   });
 });
@@ -45,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     cursorCircle.style.top = `${y}px`;
   });
 
-  // Optional: small "click pulse"
   document.addEventListener("click", () => {
     cursorCircle.style.transform = "translate(-50%, -50%) scale(0.8)";
     setTimeout(() => {
@@ -55,12 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".counter");
-  let started = false; // to prevent multiple triggers
+  let started = false; 
 
   const animateCounter = (counter) => {
     const target = +counter.getAttribute("data-target");
     let count = 0;
-    const increment = target / 200; // adjust speed here
+    const increment = target / 200;
 
     const update = () => {
       if (count < target) {
@@ -81,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting && !started) {
           counters.forEach(counter => animateCounter(counter));
           started = true;
-          observer.disconnect(); // stop observing after animation
+          observer.disconnect(); 
         }
       });
     },
-    { threshold: 0.5 } // trigger when 50% of section is visible
+    { threshold: 0.5 }
   );
 
   const counterSection = document.querySelector(".counter-section");
@@ -93,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Automatically toggle card colors every 3 seconds
+
 setInterval(() => {
   document.querySelectorAll(".card").forEach(card => {
     card.classList.toggle("style1");
@@ -153,7 +129,7 @@ var swiper = new Swiper('.blog-slider', {
       mousewheel: {
         invert: false,
       },
-      // autoHeight: true,
+
       pagination: {
         el: '.blog-slider__pagination',
         clickable: true,

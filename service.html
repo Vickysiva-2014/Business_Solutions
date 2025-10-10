@@ -23,14 +23,10 @@
       <a href="404.html" target="_blank" class="social"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </div>
-
-  <!-- Navbar -->
   <header>
     <div class="logo">
       <img src="images/logo.png" alt="Logo">
     </div>
-
-    <!-- Hamburger for mobile -->
     <div class="hamburger">
       <div class="bar"></div>
       <div class="bar"></div>
@@ -71,13 +67,13 @@
     <div class="video-bg">
   <video autoplay muted loop playsinline>
     <source src="videos/service.mp4" type="video/mp4">
-    <!-- fallback -->
+
     Your browser does not support the video tag.
   </video>
 </div>
   <div class="grid">
 
-    <!-- Card 1 -->
+
     <div class="card">
       <div class="icon-wrap"><i class="fas fa-briefcase"></i></div>
       <h3>Business Audit</h3>
@@ -85,7 +81,7 @@
       <a class="learn" href="404.html">Learn More</a>
     </div>
 
-    <!-- Card 2 -->
+
     <div class="card">
       <div class="icon-wrap"><i class="fas fa-coins"></i></div>
       <h3>Tax Strategy</h3>
@@ -93,7 +89,7 @@
       <a class="learn" href="404.html">Learn More</a>
     </div>
 
-    <!-- Card 3 -->
+
     <div class="card">
       <div class="icon-wrap"><i class="fas fa-chart-line"></i></div>
       <h3>Financial Advice</h3>
@@ -101,7 +97,7 @@
       <a class="learn" href="404.html">Learn More</a>
     </div>
 
-    <!-- Card 4 -->
+
     <div class="card" data-aos="flip-up" data-aos-delay="500">
       <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
       <h3>Insurance Strategy</h3>
@@ -109,7 +105,7 @@
       <a class="learn" href="404.html">Learn More</a>
     </div>
 
-    <!-- Card 5 -->
+
     <div class="card" data-aos="flip-up" data-aos-delay="600">
       <div class="icon-wrap"><i class="fas fa-lightbulb"></i></div>
       <h3>Startups</h3>
@@ -117,7 +113,7 @@
       <a class="learn" href="404.html">Learn More</a>
     </div>
 
-    <!-- Card 6 -->
+
     <div class="card" data-aos="flip-up" data-aos-delay="700">
       <div class="icon-wrap"><i class="fas fa-hand-holding-usd"></i></div>
       <h3>Manage Investment</h3>
@@ -131,7 +127,7 @@
 
 <section class="services-section">
   <div class="container">
-    <!-- Header -->
+
     <div class="sec-title">
       <div class="icon-left"></div>
       <div class="title-content">
@@ -142,10 +138,10 @@
       <div class="icon-right"></div>
     </div>
 
-    <!-- Service Cards -->
+
     <div class="services-row">
       
-      <!-- Card 1 -->
+
       <div class="service-card" data-aos="fade-up" data-aos-delay="500">
         <div class="service-img">
           <img src="images/service1.jpg" alt="Investment Idea">
@@ -161,7 +157,6 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="service-card" data-aos="fade-up" data-aos-delay="600">
         <div class="service-img">
           <img src="images/service2.jpg" alt="Investment Strategies">
@@ -177,7 +172,7 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
+
       <div class="service-card" data-aos="fade-up" data-aos-delay="700">
         <div class="service-img">
           <img src="images/service3.jpg" alt="Expert Investment">
@@ -204,7 +199,7 @@
     </div>
 
     <div class="process-row">
-      <!-- Step 1 -->
+
       <div class="process-card" data-aos="fade-up" data-aos-delay="400">
         <div class="process-img">
           <img src="images/process1.jpg" alt="Consulting">
@@ -215,7 +210,7 @@
         <a href="404.html" class="btn">Call Now</a>
       </div>
 
-      <!-- Step 2 -->
+
       <div class="process-card" data-aos="fade-up" data-aos-delay="500">
         <div class="process-img">
           <img src="images/process2.jpg" alt="Strategy">
@@ -226,7 +221,7 @@
         <a href="404.html" class="btn">Call Now</a>
       </div>
 
-      <!-- Step 3 -->
+
       <div class="process-card" data-aos="fade-up" data-aos-delay="600">
         <div class="process-img">
           <img src="images/process3.jpg" alt="Execution">
@@ -326,9 +321,9 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
-      duration: 1000,   // animation duration in ms
-      once: false,      // replay animation when scrolling back
-      mirror: true,     // animate both entering and leaving viewport
+      duration: 1000,   
+      once: false,      
+      mirror: true,     
       easing: 'ease-in-out'
     });
   });
@@ -344,17 +339,17 @@ document.addEventListener("DOMContentLoaded", () => {
   bars.forEach(bar => {
     const percent = parseInt(bar.dataset.percent);
     let current = 0;
-    let direction = 1; // 1 = increasing, -1 = decreasing
-    const speed = 0.3; // smaller = slower
+    let direction = 1; 
+    const speed = 0.3; 
 
     function animateBar() {
-      current += direction * speed; // slow down increment
+      current += direction * speed; 
       if (current >= percent) {
         direction = -1;
-        current = percent; // prevent overshoot
+        current = percent; 
       } else if (current <= 0) {
         direction = 1;
-        current = 0; // prevent undershoot
+        current = 0; 
       }
 
       bar.style.width = current + "%";
@@ -392,8 +387,6 @@ if (window.innerWidth <= 768) {
 
 </script>
 
-
-<!-- Your other scripts -->
 <script src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 

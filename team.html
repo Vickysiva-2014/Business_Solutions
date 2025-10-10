@@ -25,7 +25,7 @@
     <img src="Images1/logo.png" alt="logo">
   </div>
 
-  <!-- Mobile Toggle -->
+
   <div class="mobile-toggle">
     <span></span>
     <span></span>
@@ -46,7 +46,7 @@
       <li><a href="team.html">Our Team</a></li>
       <li><a href="contact1.html">Contact</a></li>
 
-      <!-- Move Button Inside Menu for Mobile -->
+ 
       <li class="menu-button">
         <a href="signin1.html" class="btn-connect">Let’s Connect →</a>
       </li>
@@ -54,7 +54,7 @@
   </nav>
 </header>
 
-<!-- Hero Section -->
+
 <section class="hero-features">
   <div class="hero-center">
     <p class="breadcrumb">Home / Our Team</p>
@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <!-- Team Member 2 -->
+   
     <div class="team-member" data-animate="bounceInUp">
       <img src="Images1/team2.jpg" alt="Member 2">
       <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <!-- Team Member 3 -->
+   
     <div class="team-member" data-animate="bounceInRight">
       <img src="Images1/team3.jpg" alt="Member 3">
       <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
@@ -112,7 +112,7 @@
       </div>
     </div>
 
-    <!-- Team Member 4 -->
+
     <div class="team-member" data-animate="bounceInLeft">
       <img src="Images1/team4.jpg" alt="Member 4">
       <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
@@ -127,7 +127,7 @@
       </div>
     </div>
 
-    <!-- Team Member 5 -->
+
     <div class="team-member" data-animate="bounceInUp">
       <img src="Images1/team6.jpg" alt="Member 5">
       <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
@@ -142,7 +142,6 @@
       </div>
     </div>
 
-    <!-- Team Member 6 -->
     <div class="team-member" data-animate="bounceInRight">
       <img src="Images1/team5.jpg" alt="Member 6">
       <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
@@ -243,16 +242,14 @@
   </div>
 
 
-  <!-- Footer -->
   <footer>
     <div class="footer-container scroll-animate" data-animate="bounceInUp">
-      <!-- Logo Section -->
+
       <div class="footer-logo-section">
         <img src="Images1/logo.png" alt="Business Solutions Logo">
         <p>We provide smart, scalable, and secure business solutions to help organizations achieve digital excellence and operational efficiency worldwide.</p>
       </div>
 
-      <!-- Services -->
       <div class="footer-column">
         <h3>Our Services</h3>
         <ul>
@@ -264,7 +261,7 @@
         </ul>
       </div>
 
-      <!-- Contact Info -->
+
       <div class="footer-column">
         <h3>Contact Info</h3>
         <ul>
@@ -276,7 +273,6 @@
         </ul>
       </div>
 
-      <!-- Newsletter -->
       <div class="footer-column newsletter">
         <h3>Newsletter</h3>
         <input type="email" placeholder="Enter your email address">
@@ -290,7 +286,6 @@
       </div>
     </div>
 
-    <!-- Bottom Footer -->
     <div class="footer-bottom">
       <p>© 2025 BusinessSolutions. All Rights Reserved.</p>
       <div>
@@ -312,7 +307,7 @@
   </script>
 
 <script>
-// Mobile Hamburger Toggle
+
 const toggle = document.querySelector('.mobile-toggle');
 const nav = document.querySelector('nav');
 
@@ -321,23 +316,18 @@ toggle.addEventListener('click', () => {
   toggle.classList.toggle('toggle');
 });
 
-// Dropdown Arrow Click
+
 document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
   arrow.addEventListener('click', function(e) {
-    e.stopPropagation(); // prevent menu from closing immediately
+    e.stopPropagation();
     const dropdown = this.parentElement.querySelector('.dropdown-content');
-
-    // Close other open dropdowns
     document.querySelectorAll('.dropdown-content').forEach(menu => {
       if (menu !== dropdown) menu.style.display = 'none';
     });
-
-    // Toggle current dropdown
     dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
   });
 });
 
-// Close dropdown when clicking outside
 document.addEventListener('click', function() {
   document.querySelectorAll('.dropdown-content').forEach(menu => {
     menu.style.display = 'none';
@@ -355,18 +345,17 @@ function validateEmail() {
   if (email === "") {
     errorMsg.textContent = "Please fill the field.";
     errorMsg.style.color = "red";
-    return false; // prevent form submission
+    return false;
   } else {
     errorMsg.textContent = "";
-    window.location.href = "404_1.html"; // go to 404 page
-    return false; // prevent default form submit
+    window.location.href = "404_1.html";
+    return false;
   }
 }
 </script>
 
 
     <script>
-    // Intersection Observer for scroll animations
     const elements = document.querySelectorAll("[data-animate]");
 
     const observer = new IntersectionObserver(entries => {

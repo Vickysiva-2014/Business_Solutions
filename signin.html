@@ -25,12 +25,10 @@ body, input {
   min-height: 100vh;
   overflow: hidden;
   background-color: #fff;
-
-  /* Add image */
-  background-image: url('images/sigin.jpg'); /* Replace with your image path */
-  background-size: cover;      /* Make image cover entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent tiling */    
+  background-image: url('images/sigin.jpg');
+  background-size: cover;      
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .forms-container {
   position: absolute;
@@ -211,7 +209,7 @@ form.sign-in-form {
   font-size: 0.8rem;
 }
 
-/* Animation Modes */
+
 .right-panel .image,
 .right-panel .content {
   transform: translateX(800px);
@@ -265,9 +263,7 @@ form.sign-in-form {
   z-index: 1;
 }
 
-/* Mobile devices (up to 576px) */
 @media (max-width: 576px) {
-  /* Adjust input fields */
   .input-field {
     height: 45px;
   }
@@ -284,7 +280,6 @@ form.sign-in-form {
     font-size: 0.9rem;
   }
 
-  /* Adjust buttons */
   .btn {
     width: 100%;
     height: 42px;
@@ -297,27 +292,25 @@ form.sign-in-form {
     font-size: 0.85rem;
   }
 
-  /* Adjust forgot/back links */
   .forgot-link {
     font-size: 0.8rem;
   }
 
-  /* Reduce form padding */
   form {
     padding: 0 1.5rem;
   }
 }
 
 .panels-container .panel .content h3 {
-  margin-bottom: 10px; /* space below heading */
+  margin-bottom: 10px;
 }
 
 .panels-container .panel .content p {
-  margin-bottom: 10px; /* space below paragraph */
+  margin-bottom: 10px;
 }
 
 .panels-container .panel .content .btn {
-  margin-bottom: 10px; /* space below button */
+  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {
@@ -360,9 +353,6 @@ form.sign-in-form {
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
-
-      <!-- Sign In -->
-<!-- Sign In -->
 <form class="sign-in-form">
   <h2 class="title">Sign in</h2>
   
@@ -376,21 +366,17 @@ form.sign-in-form {
     <input type="password" placeholder="Password" required />
   </div>
 
-  <!-- Forgot Password link above login button -->
   <div style="margin-bottom: 10px; text-align: right;">
   <a href="#" class="forgot-link" id="forgot-btn">Forgot Password?</a>
 </div>
 
   <button type="submit" class="btn solid">Login</button>
 
-  <!-- Back to Home link below login button -->
   <div style="margin-top: 10px; text-align: center;">
     <a href="index.html" class="forgot-link">Back to Home</a>
   </div>
 </form>
 
-
-<!-- Sign Up -->
 <form class="sign-up-form">
   <h2 class="title">Sign up</h2>
   <div class="input-field">
@@ -411,8 +397,6 @@ form.sign-in-form {
   </div>
 </form>
 
-
-      <!-- Forgot Password -->
       <form class="forgot-form">
         <h2 class="title">Forgot Password</h2>
         <p style="text-align:center; margin-bottom:15px; color:#666;">Enter your registered email to reset your password</p>
@@ -455,7 +439,6 @@ const signInBtn = document.querySelector("#sign-in-btn");
 const forgotBtn = document.querySelector("#forgot-btn");
 const backToLogin = document.querySelector("#back-to-login");
 
-// Switch modes
 signUpBtn.addEventListener("click", () => {
   container.classList.remove("forgot-mode");
   container.classList.add("sign-up-mode");
@@ -477,7 +460,6 @@ backToLogin.addEventListener("click", (e) => {
   container.classList.remove("forgot-mode");
 });
 
-// Redirect to 404.html after successful validation
 document.querySelectorAll("form").forEach(form => {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
