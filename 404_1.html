@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Astronaut Page</title>
+<style>
+/* General Reset */
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.2px;
+  color: white;
+  font-size: 12px;
+  background-image: linear-gradient(92deg, #0b0d0d, #180708, #ff2121);
+}
+
+/* Stars */
+.stars { position: absolute; width: 100%; height: 100%; top:0; left:0; }
+.star {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.8;
+  animation: blink 2s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.4); opacity: 0.5; }
+}
+
+@keyframes floating {
+  0%,20%,40%,60%,80%,100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
+  }
+}
+
+/* Center Container */
+.center {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s;
+  z-index:1;
+}
+
+.center .circle { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); border-radius: 50%; }
+
+.circle--outer { width:550px; height:550px; background-image: linear-gradient(to right bottom, #231c24, #ce221c); box-shadow:0 0 20px -8px black; }
+.circle--inner { width:355px; height:355px; background-image: linear-gradient(to right bottom, #241a27, #f71d1d); box-shadow:0 0 20px -8px black; }
+
+.four { position: absolute; font-size:150px; font-weight:900; text-shadow:0 2px 10px rgba(0,0,0,0.5); user-select:none; }
+.four--1 { top:-100px; left:-180px; z-index:1; }
+.four--2 { top:-100px; left:80px; z-index:3; }
+
+/* Astronaut */
+.astronaut { position:absolute; top:-115px; left:-30px; transform: rotate(17deg); }
+.astronaut-backpack { width:100px; height:100px; background:#e3e3e3; border-radius:10px; }
+.astronaut-helmet { position:absolute; top:-30px; left:50%; width:66px; height:66px; border-radius:50%; background:white; box-shadow:0 5px 1px -3px gray; transform: translateX(-50%); z-index:3; overflow:hidden; }
+.astronaut-glass { position:absolute; top:13px; left:5px; width:56px; height:56px; background:#00202e; border-radius:10px; }
+.glow { position:absolute; border-radius:50%; background-color:#334d57; }
+.glow--1 { top:25px; left:15px; width:17px; height:17px; }
+.glow--2 { top:44px; left:13px; width:7px; height:7px; }
+.astronaut-body { position:absolute; top:30px; left:50%; width:50px; height:50px; background:#c3c3c3; transform: translateX(-50%); }
+
+.astronaut-wire { position:absolute; top:-40px; left:-260px; }
+
+.astronaut-hands { position:absolute; top:-89px; left:-23px; width:100px; transform:rotate(17deg); z-index:3; }
+.astronaut-hand { position:absolute; }
+.hand--left { left:-3px; }
+.hand--right { transform: scaleX(-1); right:-3px; }
+
+.oh {
+  transition: all 0.1s linear;
+  animation: floating 4s ease-in-out infinite; /* continuous floating */
+  z-index:2;
+}
+
+
+.planet { background-color:#ff4980; box-shadow: inset -6px -10px 0 1px #cc3b6b, 0 2px 10px rgba(0,0,0,0.4); width:155px; height:155px; border-radius:50%; position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); }
+.craters .crater { position:absolute; border-radius:50%; background:#c93667; }
+.crater--1 { width:35px;height:35px; top:30px; left:25px;}
+.crater--2 { width:23px;height:23px; top:20px; left:93px;}
+.crater--3 { width:17px;height:17px; top:77px; left:17px;}
+.crater--4 { width:10px;height:10px; top:90px; left:80px;}
+.crater--5 { width:25px;height:25px; top:115px; left:50px;}
+.crater--6 { width:13px;height:13px; top:118px; left:105px;}
+
+.button {
+  position: absolute;
+  top: 120px;             /* Corrected capitalization */
+  left: 50%;
+  width: 120px;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  border: 1px solid white;
+  border-radius: 3px;
+  cursor: pointer;
+  z-index: 999;
+  background: none;        /* Removes background color */
+  color: white;            /* Ensures text is visible */
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slight white overlay on hover */
+  border-color: #ff4980;                 /* Optional: change border color */
+  color: #fff;                           /* Keep text visible */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* subtle glow */
+  transition: all 0.3s ease;             /* smooth effect */
+}
+
+.button:active { transform: translateX(-50%) scale(0.95); }
+
+.sorry { position:absolute; top:210px; left:50%; transform: translateX(-50%); font-size:15px; color:white; width: 200px;}
+
+
+@keyframes floating {
+  0%   { transform: translate(-10px, -5px) rotate(-2deg); }
+  25%  { transform: translate(8px, 5px) rotate(1deg); }
+  50%  { transform: translate(-5px, 8px) rotate(-1deg); }
+  75%  { transform: translate(5px, -5px) rotate(2deg); }
+  100% { transform: translate(-10px, -5px) rotate(-2deg); }
+}
+
+/* Generate stars with JS equivalent for Pug loop */
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<div class="center">
+  <div class="circle circle--outer"></div>
+  <div class="circle circle--inner"></div>
+  
+  <div class="four four--1">4</div>
+  <div class="four four--2">4</div>
+  
+  <div class="circle oh">
+    <div class="astronaut">
+      <div class="astronaut-backpack"></div>
+      <div class="astronaut-helmet">
+        <div class="astronaut-glass"></div>
+        <div class="glow glow--1"></div>
+        <div class="glow glow--2"></div>
+      </div>
+      <div class="astronaut-body"></div>
+    </div>
+    
+    <svg class="astronaut-wire" viewBox="-9 -9 259 823" width="259" height="823">
+      <path d="M241 0c-24 54-30 113-78 148S63 159 27 215c-35 55 32 102 73 141s103 94 98 166c-6 97-169 66-192 157-10 43-8 84 9 126" fill="none" stroke-width="6" stroke="#FFF"></path>
+    </svg>
+    
+    <div class="planet">
+      <div class="craters">
+        <div class="crater crater--1"></div>
+        <div class="crater crater--2"></div>
+        <div class="crater crater--3"></div>
+        <div class="crater crater--4"></div>
+        <div class="crater crater--5"></div>
+        <div class="crater crater--6"></div>
+      </div>
+    </div>
+  </div>
+  
+  <a href="saas.html">
+  <button class="button">GO HOME</button>
+</a>
+  <div class="sorry">Oops! Sorry, page not found.</div>
+</div>
+
+<script>
+// Generate 80 stars
+document.addEventListener('mousemove', event => {
+  let domainX = [0, document.body.clientWidth],
+      domainY = [0, document.body.clientHeight],
+      range = [-10,10];
+  
+  let translate = {
+    x: range[0] + (event.clientX - domainX[0]) * (range[1]-range[0])/(domainX[1]-domainX[0]),
+    y: range[0] + (event.clientY - domainY[0]) * (range[1]-range[0])/(domainY[1]-domainY[0])
+  };
+  
+  oh.style.animation = 'none';
+  oh.style.transform = `translate(${translate.x}px, ${translate.y}px)`;
+});
+
+document.addEventListener('mouseleave', event => {
+  oh.style.animation = 'floating 3s linear infinite';
+});
+</script>
+
+<script>
+// Generate 80 stars
+const starsContainer = document.querySelector('.stars');
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement('div');
+  star.classList.add('star');
+  // Random position
+  star.style.top = Math.random() * window.innerHeight + 'px';
+  star.style.left = Math.random() * window.innerWidth + 'px';
+  // Random size
+  const size = Math.random() * 2 + 1;
+  star.style.width = size + 'px';
+  star.style.height = size + 'px';
+  // Random blink speed
+  star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+  starsContainer.appendChild(star);
+}
+</script>
+
+</body>
+</html>
