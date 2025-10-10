@@ -509,6 +509,40 @@ nav ul li.dropdown {
 }
 
 
+@media (min-width: 320px) and (max-width: 380px) {
+  .hero {
+    padding: 40px 5% 60px; 
+    gap: 20px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 30px; /* slightly smaller heading */
+    line-height: 1.15;
+  }
+
+  .hero-content p {
+    margin-top: 10px; /* tighter spacing between elements */
+    font-size: 13px;
+  }
+
+  .hero-content .btn-explore {
+    margin-top: 20px; /* reduce space before button */
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+
+  .hero-image {
+    width: 200px;
+    margin: 20px auto 0; /* center image, reduce margin-top */
+    animation: floatDiamond 4s ease-in-out infinite;
+  }
+}
+
 .feature-section {
   padding: 80px 0;
   background-color: #060606;
