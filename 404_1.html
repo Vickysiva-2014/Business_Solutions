@@ -129,6 +129,103 @@ body {
   100% { transform: translate(-10px, -5px) rotate(-2deg); }
 }
 
+/* Mobile Device Styles */
+@media (max-width: 480px) {
+  body {
+    font-size: 10px;
+  }
+
+  /* Center Container */
+  .center .circle--outer {
+    width: 300px;
+    height: 300px;
+  }
+
+  .center .circle--inner {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* 404 Text */
+  .four {
+    font-size: 80px;
+  }
+
+  .four--1 { top: -50px; left: -80px; }
+  .four--2 { top: -50px; left: 40px; }
+
+  /* Astronaut */
+  .astronaut {
+    top: -70px;
+    left: -15px;
+    transform: rotate(15deg) scale(0.7);
+  }
+
+  .astronaut-backpack {
+    width: 70px;
+    height: 70px;
+  }
+
+  .astronaut-helmet {
+    width: 46px;
+    height: 46px;
+    top: -20px;
+  }
+
+  .astronaut-glass {
+    width: 36px;
+    height: 36px;
+    top: 8px;
+    left: 5px;
+  }
+
+  .astronaut-body {
+    width: 35px;
+    height: 35px;
+  }
+
+  .astronaut-hands {
+    top: -60px;
+    left: -15px;
+    width: 70px;
+  }
+
+  /* Planet */
+  .planet {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .crater--1 { width:20px; height:20px; top:20px; left:15px; }
+  .crater--2 { width:15px; height:15px; top:12px; left:60px; }
+  .crater--3 { width:10px; height:10px; top:50px; left:10px; }
+  .crater--4 { width:7px; height:7px; top:60px; left:50px; }
+  .crater--5 { width:15px; height:15px; top:75px; left:30px; }
+  .crater--6 { width:8px; height:8px; top:78px; left:65px; }
+
+  /* Button */
+  .button {
+    top: 90px;
+    width: 100px;
+    padding: 6px 10px;
+  }
+
+  .sorry {
+    top: 150px;
+    width: 160px;
+    font-size: 12px;
+  }
+
+  /* Stars */
+  .star {
+    width: 3px;
+    height: 3px;
+  }
+}
+
 /* Generate stars with JS equivalent for Pug loop */
 </style>
 </head>
