@@ -879,7 +879,7 @@ nav ul li.dropdown {
 .cards-container {
   display: flex;
   justify-content: space-between; /* Spread cards evenly */
-  gap: 20px;
+  gap: 30px;
   flex-wrap: nowrap; /* Prevent wrapping to next line */
   flex-direction: row;
   flex-wrap: nowrap;
@@ -891,7 +891,6 @@ nav ul li.dropdown {
     justify-content: center;
   }
 }
-
 
 .solution-card {
   background: #101a20;
@@ -1191,14 +1190,18 @@ nav ul li.dropdown {
   justify-content: space-between;
   gap: 40px;
   position: relative;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Don't wrap on desktop */
 }
 
+/* Make image and info responsive */
 .service-item img {
-  width: 700px;
-  height: 320px;
+  width: 60%;        /* instead of fixed 700px */
+  max-width: 700px;
+  height: auto;      /* maintain aspect ratio */
   border-radius: 10px;
 }
+
+
 
 .service-number {
   position: absolute;
@@ -1215,8 +1218,9 @@ nav ul li.dropdown {
   padding: 25px;
   border-radius: 8px;
   z-index: 2;
-  width: 300px;
-  height: 300px;
+  width: 35%;        /* instead of fixed 300px */
+  min-width: 250px;
+  height: auto;
 }
 
 .service-info h3 {
@@ -1250,6 +1254,37 @@ nav ul li.dropdown {
 .service-item.service-reverse .service-number {
   left: auto;
   right: 10px;
+}
+
+@media (max-width: 1024px) {
+  .service-item {
+    flex-direction: column;  /* stack image and info vertically */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .service-item img,
+  .service-info {
+    width: 100%;            /* full width on tablets/mobile */
+  }
+
+  .service-info {
+    height: auto;
+  }
+
+  .service-number {
+    font-size: 6rem;        /* smaller on mobile */
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    top: -20px;
+  }
+
+  .service-item.service-reverse .service-number {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -2106,6 +2141,4 @@ button:hover {
 
 .headShake {
   animation: headShake 2s ease;
-
 }
-
