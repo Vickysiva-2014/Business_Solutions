@@ -512,7 +512,7 @@ nav ul li.dropdown {
 
   .hero-image {
     width: 220px;
-    margin-left: -50px;              /* remove top/bottom gap */
+    margin-left: -100px;              /* remove top/bottom gap */
     animation: floatDiamond 4s ease-in-out infinite;
   }
 }
@@ -542,7 +542,7 @@ nav ul li.dropdown {
 
   .hero-image {
     width: 190px;
-    margin-left: -50px;
+    margin-left: -100px;
   }
 }
 
