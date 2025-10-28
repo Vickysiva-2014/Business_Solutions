@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business Solutions — Admin Dashboard</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = {darkMode: 'class'}</script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <style>
+:root {
+    --accent: #8e0a64;
+  }
+
+  .logo {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+
+  .card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform .35s cubic-bezier(.2, .9, .3, 1), box-shadow .35s;
+  }
+  .dark .card {
+    background: #1e293b;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(14, 21, 47, 0.25);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .main-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+
+
+  .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-left: -80px;
+  }
+
+  .sidebar-logo img {
+    width: 160px;
+    height: auto;
+  }
+
+
+aside#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  width: 18rem;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out;
+}
+
+main {
+  margin-left: 18rem;
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  width: calc(100% - 18rem);
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden;          /* prevent horizontal scrolling */
+    max-width: 100vw;
+  }
+
+  aside#sidebar {
+    transform: translateX(-100%);
+    width: 13.5rem;              /* reduced width from 18rem → 13.5rem */
+    background: white;
+    margin-top: 80px;            /* adjust for header height */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+  }
+
+  .dark aside#sidebar {
+    background: #1e293b;
+  }
+
+  aside#sidebar.open {
+    transform: translateX(0);
+  }
+
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Dim background when sidebar open */
+  body.sidebar-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    top: 80px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 40;
+  }
+
+  /* Sidebar links compact */
+  aside#sidebar nav a {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Prevent overflow for cards, tables, and images */
+  img, table, .card, .p-4, .rounded-lg {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Compact header layout */
+  header .flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+    .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-left: -70px;
+  }
+}
+
+
+  </style>
+</head>
+<body class="antialiased bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+
+<div class="main-container">
+  <aside id="sidebar" class="bg-white dark:bg-slate-800 border-r dark:border-slate-700 p-5">
+    <div class="sidebar-logo">
+      <img src="images/logo.png" alt="Business Solutions Logo" class="w-40 h-auto">
+    </div>
+
+    <nav class="space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-3 p-2 rounded-md bg-[var(--accent)] text-white transition">
+        <i class="fa-solid fa-house"></i><span>Dashboard</span>
+      </a>
+      <a href="analytics.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-chart-line"></i><span>Analytics</span>
+      </a>
+      <a href="statistics.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-briefcase"></i><span>Statistics</span>
+      </a>
+      <a href="projects.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
+      </a>
+      <a href="transaction.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-exchange-alt"></i><span>Transactions</span>
+      </a>
+      <a href="inbox.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-inbox"></i><span>Inbox</span>
+      </a>
+
+      <a href="employees.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-user-group"></i><span>Employees</span>
+      </a>
+
+      <a href="users.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-users"></i><span>Users</span>
+      </a>
+    </nav>
+
+    <div class="mt-6 border-t pt-4 text-xs text-slate-500 dark:text-slate-300">
+      <div class="flex items-center justify-between">
+        <div>Theme</div>
+        <button id="themeToggle" title="Toggle dark mode" class="p-2 rounded-md bg-slate-100 dark:bg-slate-700">
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+    <main class="flex-1 p-6">
+
+      <header class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md glass"><i class="fa-solid fa-bars"></i></button>
+          <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[var(--accent)] text-white hover:opacity-95"><i class="fa-solid fa-house"></i> Home</a>
+          <h1 class="text-xl font-semibold ml-3">Dashboard Overview</h1>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="relative flex items-center gap-2">
+
+            <div class="relative">
+              <button id="topNotifBtn" class="p-2 rounded-full glass"><i class="fa-solid fa-bell"></i></button>
+              <div id="topNotifBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</div>
+              <div id="topNotifDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md shadow-lg p-3 z-50">
+                <div class="flex items-center justify-between mb-2"><strong>Notifications</strong><button id="clearTopNotifs" class="text-xs text-slate-500">Clear</button></div>
+                <div id="topNotifList" class="space-y-2 max-h-48 overflow-auto scrollbar-thin"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="text-sm text-slate-500 dark:text-slate-300">Admin</div>
+            <img src="https://i.pravatar.cc/150?img=47" alt="Admin" class="avatar ring-2 ring-white dark:ring-slate-900" />
+          </div>
+        </div>
+      </header>
+
+
+      <section class="grid lg:grid-cols-3 gap-6">
+
+
+        <div class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="text-sm text-slate-500">Revenue</h3>
+                <div class="text-2xl font-bold">$58,230</div>
+              </div>
+              <div class="text-sm text-green-500">+8.6% <i class="fa-solid fa-arrow-up-right"></i></div>
+            </div>
+            <canvas id="revenueChart" height="80"></canvas>
+          </div>
+
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="text-sm text-slate-500">Active Clients</h3>
+                <div class="text-2xl font-bold">1,024</div>
+              </div>
+              <div class="text-sm text-red-400">-2.1% <i class="fa-solid fa-arrow-down-right"></i></div>
+            </div>
+            <canvas id="usersChart" height="80"></canvas>
+          </div>
+
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="text-sm text-slate-500">Conversion</h3>
+                <div class="text-2xl font-bold">4.2%</div>
+              </div>
+              <div class="text-sm text-green-500">+0.6%</div>
+            </div>
+            <canvas id="convChart" height="80"></canvas>
+          </div>
+
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <h3 class="text-sm text-slate-500">Tasks Progress</h3>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 mt-3 overflow-hidden">
+              <div id="taskBar" class="h-3 rounded-full" style="width:63%;background:linear-gradient(90deg,var(--accent),#fb6aa2)"></div>
+            </div>
+            <div class="text-xs text-slate-500 mt-2">63% completed</div>
+          </div>
+        </div>
+
+        <aside class="space-y-6">
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-2"><strong>Quick Info</strong><span class="text-sm text-slate-500">Overview</span></div>
+            <div class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              <div class="flex items-center justify-between"><div>Open Projects</div><div class="text-sm text-[var(--accent)]">8</div></div>
+              <div class="flex items-center justify-between"><div>Pending Proposals</div><div class="text-sm text-yellow-500">4</div></div>
+              <div class="flex items-center justify-between"><div>Support Tickets</div><div class="text-sm text-red-500">12</div></div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-2"><strong>Top Solution</strong><span class="text-sm text-slate-500">This Month</span></div>
+            <div>
+              <div class="text-sm font-medium">Cloud Migration</div>
+              <div class="text-xs text-slate-500 mt-1">5 contracts closed</div>
+            </div>
+          </div>
+
+
+          <div id="miniNotifications" class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+            <div class="flex items-center justify-between mb-2"><strong>Notifications</strong><span class="text-sm text-slate-500" id="miniNotifCount">3 new</span></div>
+            <div id="miniNotifList" class="text-sm text-slate-600 dark:text-slate-300 space-y-2">
+
+            </div>
+          </div>
+        </aside>
+      </section>
+
+
+      <section class="mt-6 grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+          <div class="flex items-center justify-between mb-4">
+            <strong>Client Transactions</strong>
+            <a href="#" class="text-sm text-slate-500">View all</a>
+          </div>
+          <div class="overflow-auto max-h-64">
+            <table class="w-full text-sm">
+              <thead class="text-slate-500 text-left">
+                <tr><th>Invoice</th><th>Client</th><th>Date</th><th>Amount</th><th>Status</th></tr>
+              </thead>
+              <tbody id="txTable" class="align-top"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+          <div class="flex items-center justify-between mb-4"><strong>Business Solutions Projects</strong><span class="text-sm text-slate-500">Active</span></div>
+          <div class="space-y-3" id="projectList">
+          </div>
+        </div>
+      </section>
+
+
+      <section class="mt-6 grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+          <div class="flex items-center justify-between mb-3"><strong>Inbox</strong><button id="composeBtn" class="text-sm text-[var(--accent)]"></button></div>
+          <div class="space-y-3" id="inboxList"></div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-white dark:bg-slate-800 card-anim glow">
+          <div class="flex items-center justify-between mb-3"><strong>Users</strong><button id="addUserBtn" class="text-sm text-[var(--accent)]"></button></div>
+          <div class="space-y-3" id="userList"></div>
+        </div>
+      </section>
+
+
+       <footer class="mt-10 text-center text-sm text-slate-500">© <span id="yr"></span> Stackly</footer>
+    </main>
+  </div>
+
+
+<div id="composeModal" class="fixed inset-0 bg-black/30 hidden items-center justify-center z-50">
+  <div class="bg-white dark:bg-slate-800 rounded-lg w-full max-w-2xl p-4">
+    <div class="flex items-center justify-between mb-3">
+      <strong>Compose Message</strong>
+      <button id="closeCompose" class="text-[var(--accent)] hover:underline">Close</button>
+    </div>
+
+    <input id="msgTo" placeholder="To" class="w-full p-2 rounded-md border dark:bg-slate-700 dark:border-slate-600 mb-2" />
+    <input id="msgSubj" placeholder="Subject" class="w-full p-2 rounded-md border dark:bg-slate-700 dark:border-slate-600 mb-2" />
+    <textarea id="msgBody" rows="6" placeholder="Type your message..." class="w-full p-2 rounded-md border dark:bg-slate-700 dark:border-slate-600 mb-2"></textarea>
+
+
+    <div id="errorMsg" class="text-red-500 text-sm hidden mb-2">
+      ⚠️ Please fill all fields before sending.
+    </div>
+
+    <div class="flex justify-end mt-3">
+      <button id="sendMsg" class="px-4 py-2 rounded-md bg-[var(--accent)] text-white hover:opacity-90 transition">
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleSidebar');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    document.body.classList.toggle('sidebar-open');
+    toggleBtn.textContent = sidebar.classList.contains('open') ? '⬅' : '➤';
+  });
+</script>
+
+
+
+
+
+<script>
+
+document.getElementById('composeBtn').addEventListener('click', () => {
+  const modal = document.getElementById('composeModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+});
+
+
+document.getElementById('closeCompose').addEventListener('click', () => {
+  const modal = document.getElementById('composeModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.getElementById('errorMsg').classList.add('hidden');
+});
+
+
+document.getElementById('sendMsg').addEventListener('click', () => {
+  const to = document.getElementById('msgTo');
+  const subj = document.getElementById('msgSubj');
+  const body = document.getElementById('msgBody');
+  const errorMsg = document.getElementById('errorMsg');
+
+
+  if (!to.value.trim() || !subj.value.trim() || !body.value.trim()) {
+    errorMsg.classList.remove('hidden');
+
+
+    [to, subj, body].forEach(input => {
+      if (!input.value.trim()) {
+        input.classList.add('border-red-500', 'bg-red-50');
+      } else {
+        input.classList.remove('border-red-500', 'bg-red-50');
+      }
+    });
+  } else {
+    errorMsg.classList.add('hidden');
+    [to, subj, body].forEach(input => input.classList.remove('border-red-500', 'bg-red-50'));
+
+    window.location.href = '404.html';
+  }
+});
+
+
+    const state = {
+      notifs: [
+        {id:1,title:'Server CPU at 92%',time:'Now'},
+        {id:2,title:'New contract signed: Acme Corp',time:'1d'},
+        {id:3,title:'Invoice #INV-209 overdue',time:'2d'}
+      ],
+      tx: [
+        {invoice:'#INV-207',client:'Acme Corp',date:'2025-10-25',amount:'$12,500.00',status:'Paid'},
+        {invoice:'#INV-208',client:'Beta Labs',date:'2025-10-24',amount:'$4,200.00',status:'Pending'},
+        {invoice:'#INV-209',client:'Gamma Pvt Ltd',date:'2025-10-23',amount:'$8,900.00',status:'Overdue'},
+      ],
+      inbox: [
+        {from:'Ravi (Acme)',subject:'Project kickoff',snippet:'When can we start the migration?',time:'1d'},
+        {from:'Anu (Beta)',subject:'Billing query',snippet:'Please check line item 4',time:'2d'},
+        {from:'Priya (Gamma)',subject:'SLA details',snippet:'Can we have custom SLA?',time:'3d'}
+      ],
+      users:[
+        {name:'Rahul',role:'Project Manager',avatar:'https://i.pravatar.cc/100?img=12'},
+        {name:'Meera',role:'Support Lead',avatar:'https://i.pravatar.cc/100?img=23'},
+        {name:'Jemmy',role:'Lead Engineer',avatar:'https://i.pravatar.cc/100?img=32'}
+      ],
+      projects:[
+        {title:'ERP Implementation',category:'Finance & Inventory',progress:62},
+        {title:'Data Warehouse',category:'BI',progress:40},
+        {title:'Security Audit',category:'Compliance',progress:30}
+      ]
+    };
+
+
+    function renderTopNotifs(){
+      const list = document.getElementById('topNotifList');
+      list.innerHTML = '';
+      state.notifs.forEach(n=>{
+        const div = document.createElement('div');
+        div.className = 'p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700';
+        div.innerHTML = `<div class="flex items-center justify-between"><div class="text-sm">${n.title}</div><div class="text-xs text-slate-400">${n.time}</div></div>`;
+        list.appendChild(div);
+      });
+      document.getElementById('topNotifBadge').textContent = state.notifs.length;
+      document.getElementById('miniNotifCount').textContent = state.notifs.length + ' new';
+      const miniList = document.getElementById('miniNotifList'); miniList.innerHTML = '';
+      state.notifs.forEach(n=> { const d = document.createElement('div'); d.className='text-xs'; d.textContent = `${n.title} — ${n.time}`; miniList.appendChild(d); });
+    }
+
+    function renderTx(){
+      const tbody = document.getElementById('txTable'); tbody.innerHTML = '';
+      state.tx.forEach(t=>{
+        const tr = document.createElement('tr'); tr.className='border-t dark:border-slate-700';
+        tr.innerHTML = `<td class="py-2">${t.invoice}</td><td class="py-2">${t.client}</td><td class="py-2">${t.date}</td><td class="py-2">${t.amount}</td><td class="py-2">${t.status}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderInbox(){
+      const el = document.getElementById('inboxList'); el.innerHTML = '';
+      state.inbox.forEach(m=>{
+        const div = document.createElement('div'); div.className='p-3 border-b dark:border-slate-700';
+        div.dataset.search = (m.from + ' ' + m.subject + ' ' + m.snippet).toLowerCase();
+        div.innerHTML = `<div class="flex items-center justify-between"><div><strong>${m.from}</strong> <span class="text-xs text-slate-500">${m.subject}</span><div class="text-xs text-slate-400">${m.snippet}</div></div><div class="text-xs text-slate-400">${m.time}</div></div>`;
+        el.appendChild(div);
+      });
+    }
+
+    function renderUsers(){
+      const el = document.getElementById('userList'); el.innerHTML = '';
+      state.users.forEach(u=>{
+        const div = document.createElement('div'); div.className='flex items-center gap-3 p-2 border-b dark:border-slate-700';
+        div.dataset.search = (u.name + ' ' + u.role).toLowerCase();
+        div.innerHTML = `
+  <img src="${u.avatar}" class="w-10 h-10 rounded-full" />
+  <div>
+    <div class="font-medium">${u.name}</div>
+    <div class="text-xs text-slate-500">${u.role}</div>
+  </div>
+  <div class="ml-auto text-sm text-[var(--accent)] cursor-pointer edit-btn"></div>
+`;
+
+
+div.querySelector('.edit-btn').addEventListener('click', () => {
+  window.location.href = '404.html';
+});
+        el.appendChild(div);
+      });
+    }
+
+    function renderProjects(){
+      const wrap = document.getElementById('projectList'); wrap.innerHTML = '';
+      state.projects.forEach(p=>{
+        const outer = document.createElement('div'); outer.className='p-3 rounded-md border dark:border-slate-700'; outer.dataset.search = (p.title + ' ' + p.category).toLowerCase();
+        outer.innerHTML = `<div class="flex items-center justify-between"><div><strong>${p.title}</strong><div class="text-xs text-slate-500">${p.category}</div></div><div class="text-sm ${p.progress>50?'text-green-500':'text-yellow-400'}">${p.progress}%</div></div><div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-3"><div style="width:${p.progress}%" class="h-2 rounded-full bg-[var(--accent)]"></div></div>`;
+        wrap.appendChild(outer);
+      });
+    }
+
+    function initCharts(){
+      const rCtx = document.getElementById('revenueChart');
+      new Chart(rCtx, {type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul'],datasets:[{label:'Revenue',data:[52000,61000,48000,72000,69000,76000,82000],tension:0.4,fill:true,backgroundColor:(ctx)=>{return getComputedStyle(document.documentElement).getPropertyValue('--accent') + '33'},borderColor:'var(--accent)'}]},options:{plugins:{legend:{display:false}},scales:{y:{display:false},x:{display:false}}}});
+
+      const uCtx = document.getElementById('usersChart');
+      new Chart(uCtx, {type:'bar',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Active',data:[120,150,125,180,170,190,210],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{display:false},x:{display:false}}}});
+
+      const cCtx = document.getElementById('convChart');
+      new Chart(cCtx, {type:'doughnut',data:{labels:['Converted','Left'],datasets:[{data:[42,58],cutout:'70%'}]},options:{plugins:{legend:{position:'bottom'}}}});
+    }
+
+
+    function setTheme(dark){
+      const themeIcon = document.getElementById('themeIcon');
+      if(dark){document.documentElement.classList.add('dark'); themeIcon.className='fa-solid fa-sun'} else {document.documentElement.classList.remove('dark'); themeIcon.className='fa-solid fa-moon'}
+      localStorage.setItem('bs_theme', dark? 'dark':'light');
+    }
+    document.getElementById('themeToggle').addEventListener('click', ()=> setTheme(!document.documentElement.classList.contains('dark')));
+    if(localStorage.getItem('bs_theme') === 'dark') setTheme(true);
+
+
+    document.getElementById('topNotifBtn').addEventListener('click', ()=> document.getElementById('topNotifDropdown').classList.toggle('hidden'));
+    document.getElementById('clearTopNotifs').addEventListener('click', ()=>{ state.notifs = []; renderTopNotifs(); document.getElementById('topNotifDropdown').classList.add('hidden'); });
+
+
+    const composeModal = document.getElementById('composeModal');
+    document.getElementById('composeBtn').addEventListener('click', ()=> composeModal.classList.remove('hidden'));
+    document.getElementById('closeCompose').addEventListener('click', ()=> composeModal.classList.add('hidden'));
+    document.getElementById('sendMsg').addEventListener('click', ()=>{
+      const to = document.getElementById('msgTo').value, subj=document.getElementById('msgSubj').value, body=document.getElementById('msgBody').value;
+      if(!to||!subj){ alert('Please fill To and Subject'); return; }
+      state.inbox.unshift({from:to,subject:subj,snippet:body,time:'Now'}); renderInbox(); composeModal.classList.add('hidden');
+    });
+
+
+   document.getElementById('addUserBtn').addEventListener('click', () => {
+
+  window.location.href = '404.html';
+});
+
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', ()=>{ document.getElementById('sidebar').classList.toggle('open'); });
+
+
+    flatpickr('#fullCalendar',{inline:true,mode:'range',dateFormat:'Y-m-d'});
+
+
+    function initAll(){
+      renderTopNotifs();
+      renderTx();
+      renderInbox();
+      renderUsers();
+      renderProjects();
+      initCharts();
+      document.getElementById('yr').textContent = new Date().getFullYear();
+    }
+
+    initAll();
+
+  
+    document.getElementById('searchInput').addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+
+      document.querySelectorAll('#inboxList > div').forEach(div => {
+        const match = !q || (div.dataset.search && div.dataset.search.includes(q));
+        div.style.display = match ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('#userList > div').forEach(div => {
+        const match = !q || (div.dataset.search && div.dataset.search.includes(q));
+        div.style.display = match ? 'flex' : 'none';
+      });
+
+      document.querySelectorAll('#txTable tr').forEach(tr => {
+        const match = !q || tr.textContent.toLowerCase().includes(q);
+        tr.style.display = match ? '' : 'none';
+      });
+
+      document.querySelectorAll('#projectList > div').forEach(div => {
+        const match = !q || (div.dataset.search && div.dataset.search.includes(q));
+        div.style.display = match ? 'block' : 'none';
+      });
+    });
+
+
+    window.addEventListener('load', ()=>{
+      document.querySelectorAll('.card-anim').forEach((c,i)=>{ c.style.opacity=0; setTimeout(()=>{ c.style.transition='opacity .5s, transform .6s'; c.style.opacity=1; c.style.transform='translateY(0)'; }, i*80 ); });
+    });
+
+
+    function renderTopNotifs(){ renderTopNotifs = null; } 
+
+    function renderTopNotifs(){
+      const list = document.getElementById('topNotifList'); list.innerHTML = '';
+      state.notifs.forEach(n=>{
+        const div = document.createElement('div');
+        div.className = 'p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700';
+        div.innerHTML = `<div class="flex items-center justify-between"><div class="text-sm">${n.title}</div><div class="text-xs text-slate-400">${n.time}</div></div>`;
+        list.appendChild(div);
+      });
+      document.getElementById('topNotifBadge').textContent = state.notifs.length;
+      document.getElementById('miniNotifCount').textContent = state.notifs.length + ' new';
+      const miniList = document.getElementById('miniNotifList'); miniList.innerHTML = '';
+      state.notifs.forEach(n=> { const d = document.createElement('div'); d.className='text-xs'; d.textContent = `${n.title} — ${n.time}`; miniList.appendChild(d); });
+    }
+
+    renderTopNotifs();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business Solutions — Analytics Dashboard</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <style>
+:root {
+    --accent: #8e0a64;
+  }
+
+  .logo {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+
+  .card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform .35s cubic-bezier(.2, .9, .3, 1), box-shadow .35s;
+  }
+  .dark .card {
+    background: #1e293b;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(14, 21, 47, 0.25);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .main-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+
+
+  .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-left: -80px;
+  }
+
+  .sidebar-logo img {
+    width: 160px;
+    height: auto;
+  }
+
+
+aside#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  width: 18rem;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out;
+}
+
+main {
+  margin-left: 18rem;
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  width: calc(100% - 18rem);
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden;          /* prevent horizontal scrolling */
+    max-width: 100vw;
+  }
+
+  aside#sidebar {
+    transform: translateX(-100%);
+    width: 13.5rem;              /* reduced width from 18rem → 13.5rem */
+    background: white;
+    margin-top: 80px;            /* adjust for header height */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+  }
+
+  .dark aside#sidebar {
+    background: #1e293b;
+  }
+
+  aside#sidebar.open {
+    transform: translateX(0);
+  }
+
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Dim background when sidebar open */
+  body.sidebar-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    top: 80px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 40;
+  }
+
+  /* Sidebar links compact */
+  aside#sidebar nav a {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Prevent overflow for cards, tables, and images */
+  img, table, .card, .p-4, .rounded-lg {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Compact header layout */
+  header .flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+    .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-left: -70px;
+  }
+}
+
+</style>
+
+</head>
+<body class="antialiased bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+
+<div class="main-container">
+
+  <aside id="sidebar" class="bg-white dark:bg-slate-800 border-r dark:border-slate-700 p-5">
+
+    <div class="sidebar-logo">
+      <img src="images/logo.png" alt="Business Solutions Logo" class="w-40 h-auto">
+    </div>
+
+
+    <nav class="space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-house"></i><span>Dashboard</span>
+      </a>
+      <a href="analytics.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-chart-line"></i><span>Analytics</span>
+      </a>
+      <a href="statistics.html" class="flex items-center gap-3 p-2 rounded-md bg-[var(--accent)] text-white transition">
+        <i class="fa-solid fa-briefcase"></i><span>Statistics</span>
+      </a>
+      <a href="projects.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
+      </a>
+      <a href="transaction.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-exchange-alt"></i><span>Transactions</span>
+      </a>
+      <a href="inbox.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-inbox"></i><span>Inbox</span>
+      </a>
+
+      <a href="employees.html" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-user-group"></i><span>Employees</span>
+      </a>
+
+      <a href="#users" class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+        <i class="fa-solid fa-users"></i><span>Users</span>
+      </a>
+    </nav>
+
+
+    <div class="mt-6 border-t pt-4 text-xs text-slate-500 dark:text-slate-300">
+      <div class="flex items-center justify-between">
+        <div>Theme</div>
+        <button id="themeToggle" title="Toggle dark mode" class="p-2 rounded-md bg-slate-100 dark:bg-slate-700">
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+
+  <main class="p-6">
+
+      <header class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md glass"><i class="fa-solid fa-bars"></i></button>
+          <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[var(--accent)] text-white hover:opacity-95"><i class="fa-solid fa-house"></i> Home</a>
+          <h1 class="text-xl font-semibold ml-3">Statistics Overview</h1>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="relative flex items-center gap-2">
+
+            <div class="relative">
+              <button id="topNotifBtn" class="p-2 rounded-full glass"><i class="fa-solid fa-bell"></i></button>
+              <div id="topNotifBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</div>
+              <div id="topNotifDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md shadow-lg p-3 z-50">
+                <div class="flex items-center justify-between mb-2"><strong>Notifications</strong><button id="clearTopNotifs" class="text-xs text-slate-500">Clear</button></div>
+                <div id="topNotifList" class="space-y-2 max-h-48 overflow-auto scrollbar-thin"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="text-sm text-slate-500 dark:text-slate-300">Admin</div>
+            <img src="https://i.pravatar.cc/150?img=47" alt="Admin" class="avatar ring-2 ring-white dark:ring-slate-900" />
+          </div>
+        </div>
+      </header>
+
+
+        <!-- Statistic Cards -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="card"><h3 class="text-sm text-slate-500">Monthly Expenses</h3><div class="text-2xl font-bold">$24,600</div><div class="text-red-500 text-sm mt-1"><i class="fa fa-arrow-down"></i> -2.3%</div></div>
+      <div class="card"><h3 class="text-sm text-slate-500">Employee Productivity</h3><div class="text-2xl font-bold">88%</div><div class="text-green-500 text-sm mt-1"><i class="fa fa-arrow-up"></i> +4.1%</div></div>
+      <div class="card"><h3 class="text-sm text-slate-500">Completed Tasks</h3><div class="text-2xl font-bold">1,240</div><div class="text-green-500 text-sm mt-1"><i class="fa fa-arrow-up"></i> +8.5%</div></div>
+      <div class="card"><h3 class="text-sm text-slate-500">Avg. Department KPI</h3><div class="text-2xl font-bold">76%</div><div class="text-blue-500 text-sm mt-1"><i class="fa fa-arrow-right"></i> Stable</div></div>
+    </section>
+
+    <!-- Charts -->
+    <section class="grid lg:grid-cols-2 gap-8">
+      <div class="card">
+        <h2 class="font-semibold mb-3">Department Performance</h2>
+        <canvas id="deptPerformance"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="font-semibold mb-3">Monthly Expenses Breakdown</h2>
+        <canvas id="expenseBreakdown"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="font-semibold mb-3">Employee Productivity Trend</h2>
+        <canvas id="employeeTrend"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="font-semibold mb-3">Profit vs Expenses</h2>
+        <canvas id="profitVsExpense"></canvas>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="mt-10 card overflow-x-auto">
+      <h2 class="font-semibold mb-3">Top Performing Departments</h2>
+      <table class="w-full text-sm text-left border-collapse">
+        <thead class="border-b dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <tr><th class="py-2">Department</th><th>Manager</th><th>Projects</th><th>Success Rate</th></tr>
+        </thead>
+        <tbody>
+          <tr class="border-b dark:border-slate-700"><td class="py-2">Finance</td><td>Raj Kumar</td><td>12</td><td>94%</td></tr>
+          <tr class="border-b dark:border-slate-700"><td>Marketing</td><td>Anita Devi</td><td>10</td><td>89%</td></tr>
+          <tr class="border-b dark:border-slate-700"><td>Technology</td><td>Ravi Singh</td><td>14</td><td>91%</td></tr>
+          <tr><td>Operations</td><td>Kiran Patel</td><td>8</td><td>85%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="mt-10 text-center text-sm text-slate-500">© <span id="yr"></span> Stackly</footer>
+  </main>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleSidebar');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    document.body.classList.toggle('sidebar-open');
+    toggleBtn.textContent = sidebar.classList.contains('open') ? '⬅' : '➤';
+  });
+</script>
+
+
+<script>
+
+
+const state = {
+      notifs: [
+        {id:1,title:'Server CPU at 92%',time:'Now'},
+        {id:2,title:'New contract signed: Acme Corp',time:'1d'},
+        {id:3,title:'Invoice #INV-209 overdue',time:'2d'}
+      ]
+}
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    themeIcon.classList.toggle('fa-moon');
+    themeIcon.classList.toggle('fa-sun');
+  });
+
+
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+
+
+  const accent = '#8e0a64';
+
+new Chart(document.getElementById('deptPerformance'), {
+  type: 'bar',
+  data: { labels: ['Finance','Tech','Marketing','HR','Support'],
+  datasets: [{ data: [88,94,82,75,79], backgroundColor: accent }] },
+  options: { plugins:{legend:{display:false}}, responsive:true }
+});
+
+// Expense Breakdown
+new Chart(document.getElementById('expenseBreakdown'), {
+  type: 'doughnut',
+  data: { labels: ['Salaries','Infrastructure','Marketing','R&D','Misc'],
+  datasets: [{ data:[45,25,15,10,5], backgroundColor:['#8e0a64','#f472b6','#ec4899','#9d174d','#f9a8d4'] }] },
+  options: { cutout:'60%' }
+});
+
+// Employee Productivity Trend
+new Chart(document.getElementById('employeeTrend'), {
+  type: 'line',
+  data: { labels:['Jan','Feb','Mar','Apr','May','Jun'],
+  datasets:[{ data:[78,82,85,87,88,91], borderColor:accent, backgroundColor:'rgba(142,10,100,0.2)', fill:true, tension:0.4 }] },
+  options: { plugins:{legend:{display:false}} }
+});
+
+// Profit vs Expense
+new Chart(document.getElementById('profitVsExpense'), {
+  type: 'line',
+  data: {
+    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets:[
+      {label:'Profit', data:[12000,15000,18000,16000,21000,24000], borderColor:accent, fill:false},
+      {label:'Expenses', data:[8000,10000,12000,11000,15000,16000], borderColor:'#9ca3af', borderDash:[5,5], fill:false}
+    ]
+  },
+  options:{responsive:true}
+});
+
+    function setTheme(dark){
+      const themeIcon = document.getElementById('themeIcon');
+      if(dark){document.documentElement.classList.add('dark'); themeIcon.className='fa-solid fa-sun'} else {document.documentElement.classList.remove('dark'); themeIcon.className='fa-solid fa-moon'}
+      localStorage.setItem('bs_theme', dark? 'dark':'light');
+    }
+    document.getElementById('themeToggle').addEventListener('click', ()=> setTheme(!document.documentElement.classList.contains('dark')));
+    if(localStorage.getItem('bs_theme') === 'dark') setTheme(true);
+
+
+    document.getElementById('topNotifBtn').addEventListener('click', ()=> document.getElementById('topNotifDropdown').classList.toggle('hidden'));
+    document.getElementById('clearTopNotifs').addEventListener('click', ()=>{ state.notifs = []; renderTopNotifs(); document.getElementById('topNotifDropdown').classList.add('hidden'); });
+
+
+function renderTopNotifs() {
+  const list = document.getElementById('topNotifList');
+  const badge = document.getElementById('topNotifBadge');
+
+  list.innerHTML = '';
+
+  if (state.notifs.length === 0) {
+    list.innerHTML = `<p class="text-sm text-slate-500 text-center py-2">No new notifications</p>`;
+    badge.classList.add('hidden');
+    return;
+  }
+
+  badge.textContent = state.notifs.length;
+  badge.classList.remove('hidden');
+
+  state.notifs.forEach(n => {
+    const item = document.createElement('div');
+    item.className = 'flex items-center justify-between py-1 text-sm';
+    item.innerHTML = `
+      <span>${n.title}</span>
+      <span class="text-xs text-slate-400">${n.time}</span>
+    `;
+    list.appendChild(item);
+  });
+}
+
+function removeNotif(id) {
+  state.notifs = state.notifs.filter(n => n.id !== id);
+  renderTopNotifs();
+}
+
+renderTopNotifs();
+
+</script>
+</body>
+</html>
