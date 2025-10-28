@@ -346,6 +346,13 @@ main {
     document.body.classList.toggle('sidebar-open');
     toggleBtn.textContent = sidebar.classList.contains('open') ? '⬅' : '➤';
   });
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+  const icon = document.getElementById('themeIcon');
+  icon.classList.toggle('fa-moon');
+  icon.classList.toggle('fa-sun');
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
